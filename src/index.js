@@ -14,8 +14,8 @@ const game = () => {
   console.log(color.green('green example'));
   console.log(color.green('green example (highlighted)', true));
   console.log(`${color.blue('blue')} & ${color.red('red')}`);
-
-  // просто пример использования объектов
+  console.log();
+  console.log(color.yellow('Просто пример использования объектов', 1));
   console.log(map[player.room]);
 };
 
