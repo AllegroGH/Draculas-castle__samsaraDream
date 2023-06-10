@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-console.log('Good day, mr. Commander!');
+import game from '../src/index.js';
+
+game();
