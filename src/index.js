@@ -6,6 +6,7 @@ import map from './data/map.js';
 import player from './data/player.js';
 
 import navigation from './navigation.js';
+import commandParser from './command-parser.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -43,7 +44,8 @@ const setMode = (mode) => {
 };
 
 const doCommand = (line) => {
-  console.log(`command: ${line}`);
+  commandParser(line, map, player);
+  // console.log(`Command: ${line}`);
   // return 'exit';
 };
 
