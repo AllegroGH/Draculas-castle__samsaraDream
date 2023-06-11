@@ -44,9 +44,9 @@ const setMode = (mode) => {
 };
 
 const doCommand = (line) => {
-  commandParser(line, map, player);
-  // console.log(`Command: ${line}`);
-  // return 'exit';
+  const [command, arg] = commandParser(line);
+  if (!command) console.log(arg);
+  else console.log([command, arg]);
 };
 
 const playGame = async () => {
