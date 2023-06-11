@@ -1,8 +1,20 @@
+// import readlineSync from 'readline-sync';
+import readline from 'node:readline';
 import color from 'bash-color';
+
 import map from './data/map.js';
 import player from './data/player.js';
 
-const game = () => {
+import navigation from './navigation.js';
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false,
+});
+let rawMode;
+
+const intro = () => {
   console.log(color.yellow('Объект карты', 1));
   console.log(map);
   console.log();
@@ -17,6 +29,59 @@ const game = () => {
   console.log();
   console.log(color.yellow('Просто пример использования объектов', 1));
   console.log(map[player.room]);
+};
+
+const outro = () => {
+  console.log('game over');
+};
+
+const setMode = (mode) => {
+  process.stdin.setRawMode(mode);
+  rawMode = mode;
+  if (mode) console.log(color.black('# включен режим навигации', true));
+  else console.log(color.black('# включен режим ввода команд', true));
+};
+
+const doCommand = (line) => {
+  console.log(`command: ${line}`);
+  // return 'exit';
+};
+
+const playGame = async () => {
+  process.stdin.setRawMode(true);
+  rawMode = true;
+  let pressedKey;
+  let gameover;
+
+  const promise = new Promise((resolve) => {
+    process.stdin.on('keypress', (str, key) => {
+      if (key.ctrl && key.name === 'c') process.exit();
+      if (rawMode) {
+        pressedKey = key.name || key.sequence;
+        /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
+        pressedKey !== 'return' ? navigation(pressedKey) : setMode(false);
+      }
+    });
+
+    rl.on('line', (line) => {
+      if (!rawMode) {
+        if (line.length) gameover = doCommand(line);
+        else setMode(true);
+      }
+    });
+
+    if (gameover) resolve(true);
+  });
+  await promise;
+  return gameover;
+};
+
+const game = async () => {
+  intro();
+  readline.emitKeypressEvents(process.stdin);
+  await playGame();
+  rl.close();
+  outro();
 };
 
 export default game;
