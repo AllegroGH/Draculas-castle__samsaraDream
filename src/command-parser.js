@@ -14,6 +14,7 @@ const complexCommands = [
   ['взять', 'take'],
   ['напасть', 'attack'],
   ['осмотреть', 'inspect'],
+  ['справка', 'help'],
 ];
 
 const commandParser = (line) => {
