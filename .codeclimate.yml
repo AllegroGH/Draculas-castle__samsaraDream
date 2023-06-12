@@ -1,4 +1,4 @@
 ## other configuration excluded from example...
 exclude_patterns:
 - "src/data/*.js"
-- "src/help/help.js"
+- "src/help/common-help.js"
