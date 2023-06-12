@@ -6,6 +6,7 @@ import map from './data/map.js';
 import player from './data/player.js';
 
 import navigation from './navigation.js';
+import showMap from './help/show-map.js';
 import commandParser from './command-parser.js';
 
 const rl = readline.createInterface({
@@ -43,10 +44,22 @@ const setMode = (mode) => {
   else console.log(color.black('# включен режим ввода команд', true));
 };
 
+const commander = (command, arg) => {
+  switch (command) {
+    case 'map':
+      return showMap(map, player);
+    default:
+      return arg ? false : 0;
+  }
+};
+
 const doCommand = (line) => {
   const [command, arg] = commandParser(line);
   if (!command) console.log(arg);
-  else console.log([command, arg]);
+  else {
+    // console.log([command, arg]);
+    commander(command, arg);
+  }
 };
 
 const playGame = async () => {

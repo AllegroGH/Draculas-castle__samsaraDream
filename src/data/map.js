@@ -22,6 +22,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
   room103: {
     name: 'room103',
