@@ -16,6 +16,9 @@ const rl = readline.createInterface({
   terminal: false,
 });
 let rawMode;
+let inExit = false;
+let gameover;
+let pressedKey;
 
 const intro = () => {
   console.log(color.yellow('Объект карты', 1));
@@ -56,20 +59,49 @@ const commander = (command, arg) => {
   }
 };
 
+const temp = async () => {
+  /*
+  let i = 0;
+  const promise = new Promise((resolve) => {
+    const timerId = setInterval(() => {
+      console.log('now ', i);
+      i += 1;
+      if (i === 10) {
+        clearInterval(timerId);
+        resolve(true);
+      }
+    }, 1000);
+  });
+  await promise;
+  */
+  inExit = true;
+  console.log('Ты действительно хочешь выйти (напиши "да" или "нет" полностью)?');
+};
+
 const doCommand = (line) => {
+  if (inExit && line === 'да') return 'exit';
+  if (inExit && line === 'нет') {
+    console.log('Тогда продолжаем!');
+    inExit = false;
+    return false;
+  }
+  if (inExit) {
+    console.log('напиши "да" или "нет"');
+    return false;
+  }
   const [command, arg] = commandParser(line);
-  if (!command) console.log(arg);
+  // if (!command) console.log(arg);
+  if (!command) temp();
   else {
     console.log([command, arg]);
     commander(command, arg);
   }
+  return false;
 };
 
 const playGame = async () => {
   process.stdin.setRawMode(true);
   rawMode = true;
-  let pressedKey;
-  let gameover;
 
   const promise = new Promise((resolve) => {
     process.stdin.on('keypress', (str, key) => {
@@ -82,15 +114,15 @@ const playGame = async () => {
     });
 
     rl.on('line', (line) => {
-      if (!rawMode) {
-        if (line.length) gameover = doCommand(line);
-        else setMode(true);
+      if (!rawMode && (line.length || inExit)) {
+        gameover = doCommand(line);
+        if (gameover) resolve(true);
       }
+      if (!rawMode && !line.length && !inExit) setMode(true);
     });
-
-    if (gameover) resolve(true);
   });
   await promise;
+  rl.close();
   return gameover;
 };
 
@@ -98,7 +130,6 @@ const game = async () => {
   intro();
   readline.emitKeypressEvents(process.stdin);
   await playGame();
-  rl.close();
   outro();
 };
 
