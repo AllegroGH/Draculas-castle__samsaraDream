@@ -21,11 +21,18 @@ const printMobs = (room, spaces = 0) => {
   const indent = spaces ? ' '.repeat(spaces) : '';
   const arrOfMobs = room.mobs;
   const entries = Object.entries(mobs);
+  const curMobs = entries.map(([idMob, valueMob]) => {
+    if (arrOfMobs.includes(idMob)) console.log(color.red(`${indent}${valueMob}`));
+    return valueMob;
+  });
+  return curMobs;
+  /*
   for (const [idMob, valueMob] of entries) {
     if (arrOfMobs.includes(idMob)) {
       console.log(color.red(`${indent}${valueMob}`));
     }
   }
+  */
 };
 
 const getRussianDirection = (direct) => {
@@ -43,7 +50,7 @@ const getRussianDirection = (direct) => {
     case 'down':
       return 'внизу';
     default:
-      console.log('Нет такого направления движения.');
+      return 'Нет такого направления движения.';
   }
 };
 
@@ -62,7 +69,7 @@ const getRusForSelectedDir = (direct) => {
     case 'down':
       return 'вниз';
     default:
-      console.log('Нет такого направления движения.');
+      return 'Нет такого направления движения.';
   }
 };
 
@@ -87,20 +94,35 @@ const showHPAndRoomDirections = (room, spaces = 0) => {
         return acc;
     }
   }, '');
-  console.log(color.green(`${indent}<${player.curHP}HP, выходы: ${rusDirect}>`));
+  // console.log(color.green(`${indent}<${player.curHP}HP, выходы: ${rusDirect}>`, 'light'));
+  console.log(`${indent}<${color.green(`${player.curHP} HP`)}, выходы: ${color.yellow(rusDirect)}>`); // может так?
 };
 
 const showDescribSelectedDirection = (direction, nextObj, spaces = 0) => {
   const indent = spaces ? ' '.repeat(spaces) : '';
-  console.log(color.black(`Ты пошел ${getRusForSelectedDir(direction)}`));
-  console.log(color.blue(nextObj.name));
+  console.log(color.black(`Ты пошел ${getRusForSelectedDir(direction)}`, 1));
+  console.log(color.blue(nextObj.name, 'light'));
   console.log(color.white(`${indent}${nextObj.description}`));
 };
 
 const printLookAround = (LookRoom) => {
-  showHPAndRoomDirections(LookRoom);
-  console.log(color.black('Ты огляделся'));
+  console.log(color.black('Ты огляделся', 1));
   const entries = Object.entries(LookRoom.exits);
+  const result = entries.map(([keyDir, valueNextRoom]) => {
+    const nextLookRoom = map[valueNextRoom];
+    if (nextLookRoom.darkRoom) {
+      console.log(`${color.white(getRussianDirection(keyDir))}: темно...`);
+      return keyDir;
+    }
+    console.log(`${color.white(getRussianDirection(keyDir))}: ${color.blue(valueNextRoom, 'light')}`);
+    if (nextLookRoom.mobs.length !== 0) {
+      printMobs(nextLookRoom, 2);
+    }
+    return keyDir;
+  });
+  return result;
+
+  /*
   for (const [keyDir, valueNextRoom] of entries) {
     const nextLookRoom = map[valueNextRoom];
     if (nextLookRoom.darkRoom) {
@@ -109,22 +131,22 @@ const printLookAround = (LookRoom) => {
     }
     console.log(`${color.white(getRussianDirection(keyDir))}: & ${color.blue(valueNextRoom)}`);
     if (nextLookRoom.mobs.length !== 0) {
-      printMobs(nextLookRoom);
+      printMobs(nextLookRoom, 2);
     }
   }
+  */
 };
 
 const navigation = (pressedKey) => {
   const direction = directions.reduce((acc, [key1, key2, dir]) => {
-    if (key1 === pressedKey || key2 === pressedKey) {
-      acc = dir;
-    }
+    if (key1 === pressedKey || key2 === pressedKey) return dir;
     return acc;
   }, undefined);
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
   if (direction === 'lookAround') {
     printLookAround(lastObj);
+    showHPAndRoomDirections(lastObj);
     return;
   }
   if (direction) {
@@ -132,10 +154,11 @@ const navigation = (pressedKey) => {
       const nextRoom = lastObj.exits[direction];
       player.room = nextRoom;
       const nextObj = map[nextRoom];
-      showHPAndRoomDirections(nextObj);
       showDescribSelectedDirection(direction, nextObj, 6);
+      printMobs(nextObj);
+      showHPAndRoomDirections(nextObj);
     } else {
-      console.log(color.black('Ты не пожешь идти в этом направлении'));
+      console.log(color.black('Ты не пожешь идти в этом направлении', 1));
     }
   }
 };
