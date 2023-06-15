@@ -14,15 +14,16 @@ const directions = [
 
 const mobs = {
   draculas: 'Граф Дракула стоит здесь.',
-  ghost: 'Призрак летает вокруг костра.'
+  ghost: 'Призрак летает вокруг костра.',
 };
 
-const printMobs = (room) => {
+const printMobs = (room, spaces = 0) => {
+  const indent = spaces ? ' '.repeat(spaces) : '';
   const arrOfMobs = room.mobs;
   const entries = Object.entries(mobs);
   for (const [idMob, valueMob] of entries) {
     if (arrOfMobs.includes(idMob)) {
-      console.log(color.red(valueMob));
+      console.log(color.red(`${indent}${valueMob}`));
     }
   }
 };
@@ -41,48 +42,77 @@ const getRussianDirection = (direct) => {
       return 'на верху';
     case 'down':
       return 'внизу';
+    default:
+      console.log('Нет такого направления движения.');
   }
-}
+};
 
+const getRusForSelectedDir = (direct) => {
+  switch (direct) {
+    case 'north':
+      return 'на север';
+    case 'east':
+      return 'на восток';
+    case 'south':
+      return 'на юг';
+    case 'west':
+      return 'на запад';
+    case 'up':
+      return 'на верх';
+    case 'down':
+      return 'вниз';
+    default:
+      console.log('Нет такого направления движения.');
+  }
+};
 
-const getRoomDirections = (room) => {
+const showHPAndRoomDirections = (room, spaces = 0) => {
+  const indent = spaces ? ' '.repeat(spaces) : '';
   const roomDirections = Object.keys(room.exits);
   const rusDirect = roomDirections.reduce((acc, dir) => {
     switch (dir) {
       case 'north':
-        return acc + 'С';
+        return `${acc}С`;
       case 'east':
-        return acc + 'В';
+        return `${acc}В`;
       case 'south':
-        return acc + 'Ю';
+        return `${acc}Ю`;
       case 'west':
-        return acc + 'З';
+        return `${acc}З`;
       case 'up':
-        return acc + 'Вверх';
+        return `${acc}^`;
       case 'down':
-        return acc + 'Вниз';
+        return `${acc}v`;
+      default:
+        return acc;
     }
   }, '');
-  return rusDirect;
-}
+  console.log(color.green(`${indent}<${player.curHP}HP, выходы: ${rusDirect}>`));
+};
+
+const showDescribSelectedDirection = (direction, nextObj, spaces = 0) => {
+  const indent = spaces ? ' '.repeat(spaces) : '';
+  console.log(color.black(`Ты пошел ${getRusForSelectedDir(direction)}`));
+  console.log(color.blue(nextObj.name));
+  console.log(color.white(`${indent}${nextObj.description}`));
+};
 
 const printLookAround = (LookRoom) => {
-  console.log(color.green(`<${player.curHP}HP, выходы: ${getRoomDirections(nextObj)}>`))
+  showHPAndRoomDirections(LookRoom);
   console.log(color.black('Ты огляделся'));
   const entries = Object.entries(LookRoom.exits);
   for (const [keyDir, valueNextRoom] of entries) {
-    console.log(`${color.white(getRussianDirection(keyDir))}: & ${color.red(valueNextRoom)}`);
     const nextLookRoom = map[valueNextRoom];
     if (nextLookRoom.darkRoom) {
-      console.log('В комнате темно');
+      console.log(`${color.white(getRussianDirection(keyDir))}: темно...`);
+      return;
     }
+    console.log(`${color.white(getRussianDirection(keyDir))}: & ${color.blue(valueNextRoom)}`);
     if (nextLookRoom.mobs.length !== 0) {
       printMobs(nextLookRoom);
-    } else {
-      console.log(`Здесь никого нет`);
     }
   }
-}
+};
 
 const navigation = (pressedKey) => {
   const direction = directions.reduce((acc, [key1, key2, dir]) => {
@@ -94,20 +124,19 @@ const navigation = (pressedKey) => {
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
   if (direction === 'lookAround') {
-    return printLookAround(lastObj);
+    printLookAround(lastObj);
+    return;
   }
   if (direction) {
     if (lastObj.exits[direction]) {
       const nextRoom = lastObj.exits[direction];
       player.room = nextRoom;
-      const nextObj = map[nextRoom]
-      console.log(color.green(`<${player.curHP}HP, выходы: ${getRoomDirections(nextObj)}>`))
-      console.log(color.black(`Ты пошел на ${direction}`));
-      console.log(color.blue(nextObj.name));
-      console.log(color.white(`  ${nextObj.description}`));
+      const nextObj = map[nextRoom];
+      showHPAndRoomDirections(nextObj);
+      showDescribSelectedDirection(direction, nextObj, 6);
     } else {
       console.log(color.black('Ты не пожешь идти в этом направлении'));
-    };
+    }
   }
 };
 
