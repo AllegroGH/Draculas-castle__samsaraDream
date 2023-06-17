@@ -7,11 +7,9 @@ const simpleCommands = [
   ['отдохнуть', 'startRest'],
   ['справка', 'help'],
   ['экипировка', 'equip'],
-  ['', ''],
 ];
 
 const complexCommands = [
-  ['взять', 'take'],
   ['напасть', 'attack'],
   ['осмотреть', 'inspect'],
   ['справка', 'help'],

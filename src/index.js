@@ -4,6 +4,7 @@ import color from 'bash-color';
 
 import map from './data/map.js';
 import player from './data/player.js';
+import mobs from './data/mobs.js';
 
 import navigation from './navigation.js';
 import showMap from './help/show-map.js';
@@ -77,7 +78,7 @@ const playGame = async () => {
       if (rawMode) {
         pressedKey = key.name || key.sequence;
         /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
-        pressedKey !== 'return' ? navigation(pressedKey) : setMode(false);
+        pressedKey !== 'return' ? navigation(pressedKey, map, player, mobs) : setMode(false);
       }
     });
 

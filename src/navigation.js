@@ -1,6 +1,5 @@
+/* eslint-disable no-param-reassign */
 import color from 'bash-color';
-import map from './data/map.js';
-import player from './data/player.js';
 
 const directions = [
   ['8', 'up', 'north'],
@@ -12,27 +11,23 @@ const directions = [
   ['5', 'clear', 'lookAround'],
 ];
 
+/*
 const mobs = {
   draculas: 'Граф Дракула стоит здесь.',
   ghost: 'Призрак летает вокруг костра.',
 };
+*/
 
-const printMobs = (room, spaces = 0) => {
+const printMobs = (room, mobs, spaces = 0) => {
   const indent = spaces ? ' '.repeat(spaces) : '';
   const arrOfMobs = room.mobs;
-  const entries = Object.entries(mobs);
-  const curMobs = entries.map(([idMob, valueMob]) => {
-    if (arrOfMobs.includes(idMob)) console.log(color.red(`${indent}${valueMob}`));
-    return valueMob;
-  });
-  return curMobs;
-  /*
-  for (const [idMob, valueMob] of entries) {
-    if (arrOfMobs.includes(idMob)) {
-      console.log(color.red(`${indent}${valueMob}`));
-    }
-  }
-  */
+  const result = arrOfMobs
+    .map((el) => {
+      if (!mobs[el].killed) return color.red(mobs[el].ifAlive);
+      return color.yellow(mobs[el].ifDead);
+    })
+    .join('\r');
+  console.log(`${indent}${result}`);
 };
 
 const getRussianDirection = (direct) => {
@@ -73,7 +68,7 @@ const getRusForSelectedDir = (direct) => {
   }
 };
 
-const showHPAndRoomDirections = (room, spaces = 0) => {
+const showHPAndRoomDirections = (player, room, spaces = 0) => {
   const indent = spaces ? ' '.repeat(spaces) : '';
   const roomDirections = Object.keys(room.exits);
   const rusDirect = roomDirections.reduce((acc, dir) => {
@@ -105,7 +100,7 @@ const showDescribSelectedDirection = (direction, nextObj, spaces = 0) => {
   console.log(color.white(`${indent}${nextObj.description}`));
 };
 
-const printLookAround = (LookRoom) => {
+const printLookAround = (LookRoom, map, mobs) => {
   console.log(color.black('Ты огляделся', 1));
   const entries = Object.entries(LookRoom.exits);
   const result = entries.map(([keyDir, valueNextRoom]) => {
@@ -116,7 +111,7 @@ const printLookAround = (LookRoom) => {
     }
     console.log(`${color.white(getRussianDirection(keyDir))}: ${color.blue(valueNextRoom, 'light')}`);
     if (nextLookRoom.mobs.length !== 0) {
-      printMobs(nextLookRoom, 2);
+      printMobs(nextLookRoom, mobs, 2);
     }
     return keyDir;
   });
@@ -137,7 +132,8 @@ const printLookAround = (LookRoom) => {
   */
 };
 
-const navigation = (pressedKey) => {
+const navigation = (pressedKey, map, player, mobs) => {
+  if (pressedKey === '-') console.log('NEW KEY!!!');
   const direction = directions.reduce((acc, [key1, key2, dir]) => {
     if (key1 === pressedKey || key2 === pressedKey) return dir;
     return acc;
@@ -145,8 +141,8 @@ const navigation = (pressedKey) => {
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
   if (direction === 'lookAround') {
-    printLookAround(lastObj);
-    showHPAndRoomDirections(lastObj);
+    printLookAround(lastObj, map, mobs);
+    showHPAndRoomDirections(player, lastObj);
     return;
   }
   if (direction) {
@@ -155,8 +151,8 @@ const navigation = (pressedKey) => {
       player.room = nextRoom;
       const nextObj = map[nextRoom];
       showDescribSelectedDirection(direction, nextObj, 6);
-      printMobs(nextObj);
-      showHPAndRoomDirections(nextObj);
+      printMobs(nextObj, mobs);
+      showHPAndRoomDirections(player, nextObj);
     } else {
       console.log(color.black('Ты не пожешь идти в этом направлении', 1));
     }
