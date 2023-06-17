@@ -6,7 +6,7 @@ const simpleCommands = [
   ['карта', 'map'],
   ['отдохнуть', 'startRest'],
   ['справка', 'help'],
-  ['экипировка', 'equip'],
+  ['состояние', 'status'],
 ];
 
 const complexCommands = [
