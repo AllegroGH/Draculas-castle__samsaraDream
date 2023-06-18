@@ -4,9 +4,12 @@ import color from 'bash-color';
 
 import map from './data/map.js';
 import player from './data/player.js';
+import mobs from './data/mobs.js';
+import items from './data/items.js';
 
 import navigation from './navigation.js';
 import showMap from './help/show-map.js';
+import status from './status.js';
 import help from './help/common-help.js';
 import commandParser from './command-parser.js';
 
@@ -54,6 +57,8 @@ const commander = (command, arg) => {
       return showMap(map, player);
     case 'help':
       return help(arg);
+    case 'status':
+      return status(player, items);
     default:
       return arg ? false : 0;
   }
@@ -109,7 +114,7 @@ const playGame = async () => {
       if (rawMode) {
         pressedKey = key.name || key.sequence;
         /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
-        pressedKey !== 'return' ? navigation(pressedKey) : setMode(false);
+        pressedKey !== 'return' ? navigation(pressedKey, map, player, mobs) : setMode(false);
       }
     });
 
