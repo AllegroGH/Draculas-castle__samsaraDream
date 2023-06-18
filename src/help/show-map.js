@@ -1,5 +1,6 @@
 const showMap = (map, player) => {
-//  console.log(`showMap resolve (now player in the room): ${player.room}`);
+  var cur_room = `${player.room}`;
+  var cur_floor =  `${map[player.room].floor}`;
 //  console.log(`showMap resolve ('visited' key in this room): ${map[player.room].visited}`);
 //Our map is a matrix 9x7. Every room has number and name. 
   var floor_1 = {6:'room101',13:'room102',14:'room103',15:'room104',

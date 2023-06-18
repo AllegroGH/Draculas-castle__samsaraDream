@@ -1,7 +1,7 @@
 const map = {
   room101: {
     name: 'room101',
-    description: 'room101 description',
+    description: 'room101 description', 
     longDescription: 'room101 loooooooooooooooong description........',
     exits: {
       north: 'room104',
@@ -10,19 +10,21 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
+    floor: 1,
   },
   room102: {
     name: 'room102',
     description: 'room102 description',
     longDescription: 'room102 loooooooooooooooong description........',
     exits: {
-      east: 'room103',
     },
     mobs: [],
     items: [],
     hiddenItems: [],
     darkRoom: false,
     visited: true,
+    floor: 1,
   },
   room103: {
     name: 'room103',
@@ -37,6 +39,8 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
+    floor: 1,
   },
   room104: {
     name: 'room104',
@@ -52,6 +56,8 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: false,
+    floor: 1,
   },
   room105: {
     name: 'room105',
@@ -64,6 +70,8 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
+    floor: 1,
   },
   room106: {
     name: 'room106',
@@ -77,6 +85,8 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
+    floor: 1,
   },
   room107: {
     name: 'room107',
@@ -91,6 +101,8 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
+    floor: 1,
   },
   room108: {
     name: 'room108',
@@ -104,6 +116,8 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
+    floor: 1,
   },
   room201: {
     name: 'room201',
@@ -116,6 +130,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
   room202: {
     name: 'room202',
@@ -130,6 +145,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
   room203: {
     name: 'room203',
@@ -143,6 +159,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
   room204: {
     name: 'room204',
@@ -155,6 +172,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
   room205: {
     name: 'room205',
@@ -170,6 +188,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
   room206: {
     name: 'room206',
@@ -184,6 +203,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
   room207: {
     name: 'room207',
@@ -196,6 +216,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
   room208: {
     name: 'room208',
@@ -209,6 +230,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
+    visited: true,
   },
 };
 
