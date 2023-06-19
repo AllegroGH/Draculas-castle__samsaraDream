@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import color from 'bash-color';
+import color, { white } from 'bash-color';
 
 const directions = [
   ['8', 'up', 'north'],
@@ -105,12 +105,13 @@ const printLookAround = (LookRoom, map, mobs) => {
   const entries = Object.entries(LookRoom.exits);
   const result = entries.map(([keyDir, valueNextRoom]) => {
     const nextLookRoom = map[valueNextRoom];
+    const locatedInsideMob = nextLookRoom.mobs[0];
     if (nextLookRoom.darkRoom) {
       console.log(`${color.white(getRussianDirection(keyDir))}: темно...`);
       return keyDir;
     }
     console.log(`${color.white(getRussianDirection(keyDir))}: ${color.blue(valueNextRoom, 'light')}`);
-    if (nextLookRoom.mobs.length !== 0) {
+    if (nextLookRoom.mobs.length !== 0 && mobs[locatedInsideMob].killed === false) {
       printMobs(nextLookRoom, mobs, 2);
     }
     return keyDir;
@@ -132,20 +133,52 @@ const printLookAround = (LookRoom, map, mobs) => {
   */
 };
 
+const getRandomDirection = (numberOfDirections) => Math.floor(Math.random() * (numberOfDirections));
+
 const navigation = (pressedKey, map, player, mobs) => {
-  if (pressedKey === '-') console.log('NEW KEY!!!');
   const direction = directions.reduce((acc, [key1, key2, dir]) => {
     if (key1 === pressedKey || key2 === pressedKey) return dir;
     return acc;
   }, undefined);
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
+  lastObj.visited = true;
+  if (pressedKey === '-' && player.inBattle === true) {
+    player.inBattle = false;
+    const directionsOfEscape = Object.keys(lastObj.exits);
+    const id = getRandomDirection(directionsOfEscape.length);
+    const directionOfEscape = directionsOfEscape[id];
+    const nextRoom = lastObj.exits[directionOfEscape];
+    player.room = nextRoom;
+    const nextObj = map[nextRoom];
+    showDescribSelectedDirection(directionOfEscape, nextObj, 6);
+    printMobs(nextObj, mobs);
+    showHPAndRoomDirections(player, nextObj);
+    if (nextObj.mobs[0]) {
+      const nextMobInRoom = nextObj.mobs[0];
+      const objectOfNextMob = mobs[nextMobInRoom];
+      //console.log(`test: ${objectOfNextMob.agro}`);
+      if (objectOfNextMob.agro === true) {
+        //console.log(nextMobInRoom);
+        return nextMobInRoom;
+      }
+    }
+    return;
+  }
+  if (pressedKey === '-' && player.inBattle === false) {
+    console.log(color.white('Зачем бежать? Ты же ни с кем не сражаешься.'));
+    return;
+  }
   if (direction === 'lookAround') {
     printLookAround(lastObj, map, mobs);
     showHPAndRoomDirections(player, lastObj);
     return;
   }
-  if (direction) {
+  if (direction && player.inBattle === true) {
+    console.log(color.white('Ты сражаешься и не можешь сечас никуда идти!'));
+    return;
+  }
+  if (direction && player.inBattle === false) {
     if (lastObj.exits[direction]) {
       const nextRoom = lastObj.exits[direction];
       player.room = nextRoom;
@@ -153,6 +186,15 @@ const navigation = (pressedKey, map, player, mobs) => {
       showDescribSelectedDirection(direction, nextObj, 6);
       printMobs(nextObj, mobs);
       showHPAndRoomDirections(player, nextObj);
+      if (nextObj.mobs[0]) {
+        const nextMobInRoom = nextObj.mobs[0];
+        const objectOfNextMob = mobs[nextMobInRoom];
+        //console.log(`test: ${objectOfNextMob.agro}`);
+        if (objectOfNextMob.agro === true) {
+          //console.log(nextMobInRoom);
+          return nextMobInRoom;
+        }
+      }
     } else {
       console.log(color.black('Ты не пожешь идти в этом направлении', 1));
     }
