@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import color, { white } from 'bash-color';
+import color from 'bash-color';
 
 const directions = [
   ['8', 'up', 'north'],
@@ -133,7 +133,7 @@ const printLookAround = (LookRoom, map, mobs) => {
   */
 };
 
-const getRandomDirection = (numberOfDirections) => Math.floor(Math.random() * (numberOfDirections));
+const getRandomDirection = (numberOfDirections) => Math.floor(Math.random() * numberOfDirections);
 
 const navigation = (pressedKey, map, player, mobs) => {
   const direction = directions.reduce((acc, [key1, key2, dir]) => {
@@ -157,26 +157,26 @@ const navigation = (pressedKey, map, player, mobs) => {
     if (nextObj.mobs[0]) {
       const nextMobInRoom = nextObj.mobs[0];
       const objectOfNextMob = mobs[nextMobInRoom];
-      //console.log(`test: ${objectOfNextMob.agro}`);
+      // console.log(`test: ${objectOfNextMob.agro}`);
       if (objectOfNextMob.agro === true) {
-        //console.log(nextMobInRoom);
+        // console.log(nextMobInRoom);
         return nextMobInRoom;
       }
     }
-    return;
+    return false;
   }
   if (pressedKey === '-' && player.inBattle === false) {
     console.log(color.white('Зачем бежать? Ты же ни с кем не сражаешься.'));
-    return;
+    return false;
   }
   if (direction === 'lookAround') {
     printLookAround(lastObj, map, mobs);
     showHPAndRoomDirections(player, lastObj);
-    return;
+    return false;
   }
   if (direction && player.inBattle === true) {
     console.log(color.white('Ты сражаешься и не можешь сечас никуда идти!'));
-    return;
+    return false;
   }
   if (direction && player.inBattle === false) {
     if (lastObj.exits[direction]) {
@@ -189,9 +189,9 @@ const navigation = (pressedKey, map, player, mobs) => {
       if (nextObj.mobs[0]) {
         const nextMobInRoom = nextObj.mobs[0];
         const objectOfNextMob = mobs[nextMobInRoom];
-        //console.log(`test: ${objectOfNextMob.agro}`);
+        // onsole.log(`test: ${objectOfNextMob.agro}`);
         if (objectOfNextMob.agro === true) {
-          //console.log(nextMobInRoom);
+          // console.log(nextMobInRoom);
           return nextMobInRoom;
         }
       }
@@ -199,6 +199,7 @@ const navigation = (pressedKey, map, player, mobs) => {
       console.log(color.black('Ты не пожешь идти в этом направлении', 1));
     }
   }
+  return false;
 };
 
 export default navigation;
