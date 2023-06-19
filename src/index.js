@@ -12,7 +12,7 @@ import showMap from './help/show-map.js';
 import status from './status.js';
 import help from './help/common-help.js';
 import commandParser from './command-parser.js';
-import startBattle from './battle.js';
+import { startBattle, bash, up } from './battle.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -21,7 +21,6 @@ const rl = readline.createInterface({
 });
 let rawMode;
 let inExit = false;
-// let runAway = false;
 let gameover;
 let pressedKey;
 
@@ -70,9 +69,8 @@ const attack = (arg) => {
     console.log('Надругательство над телами умерших преследуется по закону (УК РФ Статья 244)');
     return;
   }
-  // setNavigatinMode(true);
-  player.inBattle = true;
-  battle(target, 1);
+  player.inBattle = target;
+  battle(target);
   // console.log(mobs[curMobs[0]].name);
   // battle mob
 };
@@ -81,20 +79,22 @@ const commander = (command, arg) => {
   switch (command) {
     case 'map':
       showMap(map, player);
+      setNavigatinMode(true);
       break;
     case 'help':
       help(arg);
       break;
     case 'status':
       status(player, items);
+      setNavigatinMode(true);
       break;
     case 'attack':
+      setNavigatinMode(true);
       attack(arg);
       break;
     default:
     // return arg ? false : 0;
   }
-  setNavigatinMode(true);
 };
 
 const temp = async () => {
@@ -159,9 +159,18 @@ const playGame = async () => {
       if (rawMode) {
         pressedKey = key.name || key.sequence;
         /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
-        if (pressedKey === '0' || pressedKey === 'insert') console.log('0/ins');
-        if (pressedKey === '+') console.log('+');
-        pressedKey !== 'return' ? navigation(pressedKey, map, player, mobs) : setNavigatinMode(false);
+        if (pressedKey === '0' || pressedKey === 'insert') bash(player, mobs);
+        if (pressedKey === '+') up(player);
+        if (pressedKey === '-') {
+          if (!player.bashed) {
+            player.inBattle = false;
+            console.log('ты убежал');
+          }
+        }
+        // if (pressedKey !== 'return') navigation(pressedKey, map, player, mobs);
+        // else setNavigatinMode(false);
+        if (pressedKey !== 'return' && !player.lag) navigation(pressedKey, map, player, mobs);
+        if (pressedKey === 'return') setNavigatinMode(false);
       }
     });
 
