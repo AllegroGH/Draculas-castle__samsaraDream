@@ -12,6 +12,7 @@ import showMap from './help/show-map.js';
 import status from './status.js';
 import help from './help/common-help.js';
 import commandParser from './command-parser.js';
+import { startBattle, bash, up } from './battle.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -19,83 +20,147 @@ const rl = readline.createInterface({
   terminal: false,
 });
 let rawMode;
+let inExit = false;
+let gameover;
+let pressedKey;
 
 const intro = () => {
-  console.log(color.yellow('Объект карты', 1));
-  console.log(map);
-  console.log();
-  console.log(color.yellow('Объект игрока', 1));
-  console.log(player);
-  console.log();
-  console.log(color.yellow('Примеры вывода цветного текста', 1));
-  console.log(color.black('grey example == black highlighted', true));
-  console.log(color.green('green example'));
-  console.log(color.green('green example (highlighted)', true));
-  console.log(`${color.blue('blue')} & ${color.red('red')}`);
-  console.log();
-  console.log(color.yellow('Просто пример использования объектов', 1));
-  console.log(map[player.room]);
+  console.log('start game');
 };
 
 const outro = () => {
   console.log('game over');
 };
 
-const setMode = (mode) => {
+const setNavigatinMode = (mode) => {
   process.stdin.setRawMode(mode);
   rawMode = mode;
   if (mode) console.log(color.black('# включен режим навигации', true));
   else console.log(color.black('# включен режим ввода команд', true));
 };
 
+const checkMobToAttack = (arg) => {
+  if (!map[player.room].mobs.length) return false;
+  const curMobs = map[player.room].mobs;
+  const [target] = curMobs.filter(
+    // prettier-ignore
+    (curMob) => mobs[curMob].name
+      .toLowerCase()
+      .split(' ')
+      .filter((el) => el.startsWith(arg)).length,
+  );
+  return target;
+};
+
+const battle = (target, agro = false) => {
+  // if (agro) console.log('in battle with agro');
+  console.log('in battle');
+  startBattle(player, mobs[target], agro);
+};
+
+const attack = (arg) => {
+  const target = checkMobToAttack(arg);
+  if (!target) {
+    console.log('Здесь таких нет. На кого ты хочешь напасть?');
+    return;
+  }
+  if (mobs[target].killed) {
+    console.log('Надругательство над телами умерших преследуется по закону (УК РФ Статья 244)');
+    return;
+  }
+  player.inBattle = target;
+  battle(target);
+};
+
+const exit = () => {
+  inExit = true;
+  console.log('Ты действительно хочешь выйти (напиши "да" или "нет" полностью)?');
+};
+
 const commander = (command, arg) => {
   switch (command) {
     case 'map':
-      return showMap(map, player);
+      showMap(map, player);
+      setNavigatinMode(true);
+      break;
     case 'help':
-      return help(arg);
+      help(arg);
+      break;
     case 'status':
-      return status(player, items);
+      status(player, items);
+      setNavigatinMode(true);
+      break;
+    case 'attack':
+      setNavigatinMode(true);
+      attack(arg);
+      break;
+    case 'exit':
+      exit();
+      break;
     default:
-      return arg ? false : 0;
+    // return arg ? false : 0;
   }
 };
 
 const doCommand = (line) => {
+  if (inExit && line === 'да') return 'exit';
+  if (inExit && line === 'нет') {
+    console.log('Тогда продолжаем!');
+    inExit = false;
+    return false;
+  }
+  if (inExit) {
+    console.log('напиши "да" или "нет"');
+    return false;
+  }
   const [command, arg] = commandParser(line);
   if (!command) console.log(arg);
+  // if (!command) temp();
   else {
-    console.log([command, arg]);
+    // console.log([command, arg]);
     commander(command, arg);
   }
+  return false;
 };
 
 const playGame = async () => {
   process.stdin.setRawMode(true);
   rawMode = true;
-  let pressedKey;
-  let gameover;
 
   const promise = new Promise((resolve) => {
     process.stdin.on('keypress', (str, key) => {
+      if (player.gameover === 'player lost') resolve(true);
+      // ПОСЛЕ ЭТОГО НУЖНО СРАЗУ ВЫХОДИТЬ -- нужно все в функции сделать?
       if (key.ctrl && key.name === 'c') process.exit();
       if (rawMode) {
         pressedKey = key.name || key.sequence;
         /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
-        pressedKey !== 'return' ? navigation(pressedKey, map, player, mobs) : setMode(false);
+        if (pressedKey === '0' || pressedKey === 'insert') bash(player, mobs);
+        if (pressedKey === '+') up(player);
+        // !!!!!!!!!!!!!!!!!!!!!!!! ЗДЕСЬ НУЖНО В НАВИГАЦИИ ДОБАВИТЬ УСЛОВИЕ, ЧТО ИГРОК НЕ СБАШЕН
+        if (pressedKey === '-') {
+          if (!player.bashed) {
+            player.inBattle = false;
+            console.log('ты убежал');
+          }
+        }
+        // if (pressedKey !== 'return') navigation(pressedKey, map, player, mobs);
+        // else setNavigatinMode(false);
+        if (pressedKey !== 'return' && !player.lag) navigation(pressedKey, map, player, mobs);
+        if (pressedKey === 'return') setNavigatinMode(false);
       }
     });
 
     rl.on('line', (line) => {
-      if (!rawMode) {
-        if (line.length) gameover = doCommand(line);
-        else setMode(true);
+      if (!rawMode && (line.length || inExit)) {
+        gameover = doCommand(line);
+        if (gameover) resolve(true);
       }
+      if (!rawMode && !line.length && !inExit) setNavigatinMode(true);
     });
-
-    if (gameover) resolve(true);
   });
   await promise;
+  rl.close();
   return gameover;
 };
 
@@ -103,7 +168,6 @@ const game = async () => {
   intro();
   readline.emitKeypressEvents(process.stdin);
   await playGame();
-  rl.close();
   outro();
 };
 

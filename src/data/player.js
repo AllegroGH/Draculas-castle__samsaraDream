@@ -13,6 +13,7 @@ const player = {
   inBattle: false,
   resting: false,
   room: 'room102',
+  gameover: false,
 };
 
 export default player;
