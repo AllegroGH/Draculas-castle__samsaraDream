@@ -88,9 +88,14 @@ const round = (player, mob, agro, timerId = false) => {
   countDamageAndPrint(player, mob, agro);
 
   if ((player.curHP < 1 || mob.curHP < 1) && timerId) clearInterval(timerId);
-  if (player.curHP < 1) return 'player lost';
+  if (player.curHP < 1) {
+    player.gameover = 'player lost';
+    console.log('сдох ты.... press any key');
+    return 'player lost';
+  }
   if (mob.curHP < 1) {
     mob.killed = true;
+    player.inBattle = false;
     getItems(player, mob.items);
     return 'player won';
   }
@@ -100,18 +105,16 @@ const round = (player, mob, agro, timerId = false) => {
 };
 
 const startBattle = (player, mob, agro) => {
-  if (agro) console.log('agro!');
-
-  player.curHP = 500;
-  mob.curHP = 500;
-  player.maxDamage = 100;
+  // player.curHP = 500;
+  // mob.curHP = 500;
+  // player.maxDamage = 100;
   // player.dodge = 0;
   // player.block = 0;
-  player.bash = 0.8;
-  mob.dodge = 0.5;
-  mob.block = 0.5;
-  mob.lag = 3;
-  mob.bashed = 1;
+  // player.bash = 0.8;
+  // mob.dodge = 0.5;
+  // mob.block = 0.5;
+  // mob.lag = 3;
+  // mob.bashed = 1;
 
   round(player, mob, agro);
   const timerId = setInterval(() => {

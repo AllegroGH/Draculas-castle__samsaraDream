@@ -59,7 +59,6 @@ const battle = (target, agro = false) => {
 };
 
 const attack = (arg) => {
-  // check mob
   const target = checkMobToAttack(arg);
   if (!target) {
     console.log('Здесь таких нет. На кого ты хочешь напасть?');
@@ -71,8 +70,11 @@ const attack = (arg) => {
   }
   player.inBattle = target;
   battle(target);
-  // console.log(mobs[curMobs[0]].name);
-  // battle mob
+};
+
+const exit = () => {
+  inExit = true;
+  console.log('Ты действительно хочешь выйти (напиши "да" или "нет" полностью)?');
 };
 
 const commander = (command, arg) => {
@@ -92,40 +94,12 @@ const commander = (command, arg) => {
       setNavigatinMode(true);
       attack(arg);
       break;
+    case 'exit':
+      exit();
+      break;
     default:
     // return arg ? false : 0;
   }
-};
-
-const temp = async () => {
-  /*
-  let i = 0;
-  const promise = new Promise((resolve) => {
-    const timerId = setInterval(() => {
-      console.log('now ', i);
-      i += 1;
-      if (i === 10) {
-        clearInterval(timerId);
-        resolve(true);
-      }
-    }, 1000);
-  });
-  await promise;
-  */
-
-  /*
-  let i = 0;
-  const timerId = setInterval(() => {
-    console.log('now ', i);
-    i += 1;
-    if (i === 20) {
-      clearInterval(timerId);
-    }
-  }, 1000);
-  */
-
-  inExit = true;
-  console.log('Ты действительно хочешь выйти (напиши "да" или "нет" полностью)?');
 };
 
 const doCommand = (line) => {
@@ -140,8 +114,8 @@ const doCommand = (line) => {
     return false;
   }
   const [command, arg] = commandParser(line);
-  // if (!command) console.log(arg);
-  if (!command) temp();
+  if (!command) console.log(arg);
+  // if (!command) temp();
   else {
     // console.log([command, arg]);
     commander(command, arg);
@@ -155,12 +129,15 @@ const playGame = async () => {
 
   const promise = new Promise((resolve) => {
     process.stdin.on('keypress', (str, key) => {
+      if (player.gameover === 'player lost') resolve(true);
+      // ПОСЛЕ ЭТОГО НУЖНО СРАЗУ ВЫХОДИТЬ -- нужно все в функции сделать?
       if (key.ctrl && key.name === 'c') process.exit();
       if (rawMode) {
         pressedKey = key.name || key.sequence;
         /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
         if (pressedKey === '0' || pressedKey === 'insert') bash(player, mobs);
         if (pressedKey === '+') up(player);
+        // !!!!!!!!!!!!!!!!!!!!!!!! ЗДЕСЬ НУЖНО В НАВИГАЦИИ ДОБАВИТЬ УСЛОВИЕ, ЧТО ИГРОК НЕ СБАШЕН
         if (pressedKey === '-') {
           if (!player.bashed) {
             player.inBattle = false;
