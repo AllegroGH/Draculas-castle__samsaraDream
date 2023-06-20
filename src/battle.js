@@ -53,7 +53,7 @@ const getMobOutputString = (player, mob, damage) => {
 // primary battle functions
 const doBeforeRound = (mob) => {
   console.log();
-  if (mob.lag === 0) {
+  if (mob.lag === 0 && mob.bashed) {
     mob.bashed = false;
     console.log(color.red(`${mob.name} ${mob.gotupWord}`, true));
   }
