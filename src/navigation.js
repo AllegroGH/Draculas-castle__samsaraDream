@@ -143,7 +143,7 @@ const navigation = (pressedKey, map, player, mobs) => {
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
   lastObj.visited = true;
-  if (pressedKey === '-' && player.inBattle === true) {
+  if (pressedKey === '-' && player.inBattle) {
     player.inBattle = false;
     const directionsOfEscape = Object.keys(lastObj.exits);
     const id = getRandomDirection(directionsOfEscape.length);
@@ -165,7 +165,7 @@ const navigation = (pressedKey, map, player, mobs) => {
     }
     return false;
   }
-  if (pressedKey === '-' && player.inBattle === false) {
+  if (pressedKey === '-' && !player.inBattle) {
     console.log(color.white('Зачем бежать? Ты же ни с кем не сражаешься.'));
     return false;
   }
@@ -174,11 +174,11 @@ const navigation = (pressedKey, map, player, mobs) => {
     showHPAndRoomDirections(player, lastObj);
     return false;
   }
-  if (direction && player.inBattle === true) {
+  if (direction && player.inBattle) {
     console.log(color.white('Ты сражаешься и не можешь сечас никуда идти!'));
     return false;
   }
-  if (direction && player.inBattle === false) {
+  if (direction && !player.inBattle) {
     if (lastObj.exits[direction]) {
       const nextRoom = lastObj.exits[direction];
       player.room = nextRoom;
