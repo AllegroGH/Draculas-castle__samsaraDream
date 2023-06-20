@@ -142,7 +142,6 @@ const navigation = (pressedKey, map, player, mobs) => {
   }, undefined);
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
-  lastObj.visited = true;
   if (pressedKey === '-' && player.inBattle) {
     player.inBattle = false;
     const directionsOfEscape = Object.keys(lastObj.exits);
@@ -151,6 +150,7 @@ const navigation = (pressedKey, map, player, mobs) => {
     const nextRoom = lastObj.exits[directionOfEscape];
     player.room = nextRoom;
     const nextObj = map[nextRoom];
+    nextObj.visited = true;
     showDescribSelectedDirection(directionOfEscape, nextObj, 6);
     printMobs(nextObj, mobs);
     showHPAndRoomDirections(player, nextObj);
@@ -183,6 +183,7 @@ const navigation = (pressedKey, map, player, mobs) => {
       const nextRoom = lastObj.exits[direction];
       player.room = nextRoom;
       const nextObj = map[nextRoom];
+      nextObj.visited = true;
       showDescribSelectedDirection(direction, nextObj, 6);
       printMobs(nextObj, mobs);
       showHPAndRoomDirections(player, nextObj);
