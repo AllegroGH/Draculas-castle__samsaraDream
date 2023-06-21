@@ -289,7 +289,7 @@ const map = {
     description: 'room102 description',                                                          
     longDescription: 'room102 loooooooooooooooong description........',                          
     exits: {                                                                                     
-      east: 'room25',
+      east: 'room33',
       north: 'room25',
     },                                                                                                                                                                                
     mobs: [],                                                                                    
