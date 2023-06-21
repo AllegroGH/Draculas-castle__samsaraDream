@@ -299,7 +299,8 @@ const map = {
     visited: false,                                                                               
     floor: 1,                                                                                    
   },               
-  room33: {                                                                                      
+  room33: { 
+    name: 'room33',                                                                              
     longDescription: 'room102 loooooooooooooooong description........',                          
     exits: {                                                                                     
       east: 'room34',
