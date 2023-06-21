@@ -13,7 +13,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },                                                                                             
   room12: {                                                                                      
@@ -29,7 +29,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },                                                                                             
   room11: {                                                                                      
@@ -45,7 +45,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room10: {                                                                                      
@@ -60,7 +60,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room15: {                                                                                      
@@ -75,7 +75,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room16: {                                                                                      
@@ -91,7 +91,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room17: {                                                                                      
@@ -108,7 +108,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room18: {                                                                                      
@@ -125,7 +125,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room19: {                                                                                      
@@ -141,7 +141,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room20: {                                                                                      
@@ -156,7 +156,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room21: {                                                                                      
@@ -171,7 +171,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room22: {                                                                                      
@@ -186,7 +186,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room23: {                                                                                      
@@ -201,7 +201,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room24: {                                                                                      
@@ -216,7 +216,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room25: {                                                                                      
@@ -233,7 +233,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room26: {                                                                                      
@@ -249,7 +249,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room27: {                                                                                      
@@ -266,7 +266,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room28: {                                                                                      
@@ -281,7 +281,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room32: {                                                                                      
@@ -296,7 +296,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room33: {                                                                                      
@@ -310,7 +310,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room34: {                                                                                      
@@ -325,7 +325,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room40: {                                                                                      
@@ -359,7 +359,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },                                                                                             
   room54: {                                                                                      
@@ -375,7 +375,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },                                                                                             
   room53: {                                                                                      
@@ -391,7 +391,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room52: {                                                                                      
@@ -406,7 +406,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room57: {                                                                                      
@@ -421,7 +421,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room58: {                                                                                      
@@ -437,7 +437,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room59: {                                                                                      
@@ -454,7 +454,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room60: {                                                                                      
@@ -471,7 +471,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room61: {                                                                                      
@@ -487,7 +487,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room62: {                                                                                      
@@ -502,7 +502,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room63: {                                                                                      
@@ -517,7 +517,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room64: {                                                                                      
@@ -532,7 +532,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room65: {                                                                                      
@@ -547,7 +547,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room66: {                                                                                      
@@ -562,7 +562,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room67: {                                                                                      
@@ -579,7 +579,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room68: {                                                                                      
@@ -596,7 +596,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room69: {                                                                                      
@@ -613,7 +613,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room70: {                                                                                      
@@ -628,7 +628,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },                 
   room75: {                                                                                      
@@ -643,7 +643,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room109: {                                                                                      
@@ -658,7 +658,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room102: {                                                                                      
@@ -675,7 +675,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room101: {                                                                                      
@@ -690,7 +690,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room103: {                                                                                      
@@ -705,7 +705,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room94: {                                                                                      
@@ -721,7 +721,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room95: {                                                                                      
@@ -738,7 +738,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room96: {                                                                                      
@@ -754,7 +754,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room87: {                                                                                      
@@ -769,7 +769,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room88: {                                                                                      
@@ -785,7 +785,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
   room89: {                                                                                      
@@ -800,7 +800,7 @@ const map = {
     items: [],                                                                                   
     hiddenItems: [],                                                                             
     darkRoom: false,                                                                             
-    visited: true,                                                                               
+    visited: false,                                                                               
     floor: 1,                                                                                    
   },               
 };
