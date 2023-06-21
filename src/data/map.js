@@ -343,10 +343,6 @@ const map = {
     floor: 1,                                                                                    
   },               
   
-
-
-
-
   room47: {                                                                                       
     name: 'room47',                                                                               
     description: 'room101 description',                                                          
