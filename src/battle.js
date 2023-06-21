@@ -53,7 +53,7 @@ const getMobOutputString = (player, mob, damage) => {
 // primary battle functions
 const doBeforeRound = (mob) => {
   console.log();
-  if (mob.lag === 0) {
+  if (mob.lag === 0 && mob.bashed) {
     mob.bashed = false;
     console.log(color.red(`${mob.name} ${mob.gotupWord}`, true));
   }
@@ -105,12 +105,12 @@ const round = (player, mob, agro, timerId = false) => {
 };
 
 const startBattle = (player, mob, agro) => {
-  // player.curHP = 500;
+  player.curHP = 500;
   // mob.curHP = 500;
   // player.maxDamage = 100;
   // player.dodge = 0;
   // player.block = 0;
-  // player.bash = 0.8;
+  player.bash = 0.8;
   // mob.dodge = 0.5;
   // mob.block = 0.5;
   // mob.lag = 3;

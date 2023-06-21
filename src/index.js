@@ -138,12 +138,14 @@ const playGame = async () => {
         if (pressedKey === '0' || pressedKey === 'insert') bash(player, mobs);
         if (pressedKey === '+') up(player);
         // !!!!!!!!!!!!!!!!!!!!!!!! ЗДЕСЬ НУЖНО В НАВИГАЦИИ ДОБАВИТЬ УСЛОВИЕ, ЧТО ИГРОК НЕ СБАШЕН
+        /*
         if (pressedKey === '-') {
           if (!player.bashed) {
             player.inBattle = false;
             console.log('ты убежал');
           }
         }
+        */
         // if (pressedKey !== 'return') navigation(pressedKey, map, player, mobs);
         // else setNavigatinMode(false);
         if (pressedKey !== 'return' && !player.lag) navigation(pressedKey, map, player, mobs);
