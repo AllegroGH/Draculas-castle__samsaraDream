@@ -3,8 +3,8 @@ import descJson from './descriptions.json' assert {type: 'json'};
 const map = {                                                                                    
   room5: {                                                                                       
     name: 'room5',                                                                               
-    description: descJson.short_5,                                                          
-    longDescription: descJson.long_5,                          
+    description: descJson.short_5,
+    longDescription: descJson.long_5,
     exits: {                                                                                     
       south: 'room12',   
       up: 'room47',                                                                           
@@ -18,8 +18,8 @@ const map = {
   },                                                                                             
   room12: {                                                                                      
     name: 'room12',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_12,
+    longDescription: descJson.long_12,
     exits: {                                                                                     
       north: 'room5',
       south: 'room19',                                                                           
@@ -34,8 +34,8 @@ const map = {
   },                                                                                             
   room11: {                                                                                      
     name: 'room11',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_11,
+    longDescription: descJson.long_11,
     exits: {                                                                                     
       east: 'room12',
       south: 'room18',                                                                           
@@ -50,8 +50,8 @@ const map = {
   },               
   room10: {                                                                                      
     name: 'room10',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_10,
+    longDescription: descJson.long_10,
     exits: {                                                                                     
       east: 'room11',
       south: 'room17',                                                                           
@@ -65,8 +65,8 @@ const map = {
   },               
   room15: {                                                                                      
     name: 'room15',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_15,
+    longDescription: descJson.long_15,
     exits: {                                                                                     
       east: 'room16',
       south: 'room22',                                                                           
@@ -80,8 +80,8 @@ const map = {
   },               
   room16: {                                                                                      
     name: 'room16',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_16,
+    longDescription: descJson.long_16,
     exits: {                                                                                     
       east: 'room17',
       west: 'room15',
@@ -96,8 +96,8 @@ const map = {
   },               
   room17: {                                                                                      
     name: 'room17',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_17,
+    longDescription: descJson.long_17,
     exits: {                                                                                     
       east: 'room18',
       west: 'room16',
@@ -113,8 +113,8 @@ const map = {
   },               
   room18: {                                                                                      
     name: 'room18',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_18,
+    longDescription: descJson.long_18,
     exits: {                                                                                     
       east: 'room19',
       west: 'room17',
@@ -130,8 +130,8 @@ const map = {
   },               
   room19: {                                                                                      
     name: 'room19',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_19,
+    longDescription: descJson.long_19,
     exits: {                                                                                     
       west: 'room18',
       south: 'room26',
@@ -146,8 +146,8 @@ const map = {
   },               
   room20: {                                                                                      
     name: 'room20',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_20,
+    longDescription: descJson.long_20,
     exits: {                                                                                     
       east: 'room21',
       south: 'room27',
@@ -161,8 +161,8 @@ const map = {
   },               
   room21: {                                                                                      
     name: 'room21',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_21,
+    longDescription: descJson.long_21,
     exits: {                                                                                     
       west: 'room20',
       south: 'room28',
@@ -176,8 +176,8 @@ const map = {
   },               
   room22: {                                                                                      
     name: 'room22',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_22,
+    longDescription: descJson.long_22,
     exits: {                                                                                     
       east: 'room23',
       north: 'room15',
@@ -191,8 +191,8 @@ const map = {
   },               
   room23: {                                                                                      
     name: 'room23',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_23,
+    longDescription: descJson.long_23,
     exits: {                                                                                     
       north: 'room16',
       west: 'room22',
@@ -206,8 +206,8 @@ const map = {
   },               
   room24: {                                                                                      
     name: 'room24',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_24,
+    longDescription: descJson.long_24,
     exits: {                                                                                     
       east: 'room25',
       north: 'room17',
@@ -221,8 +221,8 @@ const map = {
   },               
   room25: {                                                                                      
     name: 'room25',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_25,
+    longDescription: descJson.long_25,
     exits: {                                                                                     
       east: 'room26',
       north: 'room18',
@@ -238,8 +238,8 @@ const map = {
   },               
   room26: {                                                                                      
     name: 'room26',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_26,
+    longDescription: descJson.long_26,
     exits: {                                                                                     
       east: 'room27',
       west: 'room25',
@@ -254,8 +254,8 @@ const map = {
   },               
   room27: {                                                                                      
     name: 'room27',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_27,
+    longDescription: descJson.long_27,
     exits: {                                                                                     
       east: 'room28',
       south: 'room34',
@@ -271,8 +271,8 @@ const map = {
   },               
   room28: {                                                                                      
     name: 'room28',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_28,
+    longDescription: descJson.long_28,
     exits: {                                                                                     
       west: 'room27',
       north: 'room21',
@@ -286,8 +286,8 @@ const map = {
   },               
   room32: {                                                                                      
     name: 'room32',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_32,
+    longDescription: descJson.long_32,
     exits: {                                                                                     
       east: 'room33',
       north: 'room25',
@@ -301,8 +301,8 @@ const map = {
   },               
   room33: { 
     name: 'room33', 
-    description: 'room102 description',                                                                                                                                       
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_33,
+    longDescription: descJson.long_33,
     exits: {                                                                                     
       east: 'room34',
       west: 'room32',
@@ -317,8 +317,8 @@ const map = {
   },               
   room34: {                                                                                      
     name: 'room34',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_34,
+    longDescription: descJson.long_34,
     exits: {                                                                                     
       north: 'room27',
       west: 'room33',
@@ -332,8 +332,8 @@ const map = {
   },               
   room40: {                                                                                      
     name: 'room40',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_40,
+    longDescription: descJson.long_40,
     exits: {                                                                                     
       north: 'room33',
     },                                                                                                                                                                                
@@ -347,8 +347,8 @@ const map = {
   
   room47: {                                                                                       
     name: 'room47',                                                                               
-    description: 'room101 description',                                                          
-    longDescription: 'room101 loooooooooooooooong description........',                          
+    description: descJson.short_47,
+    longDescription: descJson.long_47,
     exits: {                                                                                     
       north: 'room54',   
       down: 'room5',                                                                           
@@ -362,8 +362,8 @@ const map = {
   },                                                                                             
   room54: {                                                                                      
     name: 'room54',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_54,
+    longDescription: descJson.long_54,
     exits: {                                                                                     
       north: 'room47',
       south: 'room61',                                                                           
@@ -378,8 +378,8 @@ const map = {
   },                                                                                             
   room53: {                                                                                      
     name: 'room53',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_53,
+    longDescription: descJson.long_53,
     exits: {                                                                                     
       east: 'room54',
       south: 'room60',                                                                           
@@ -394,8 +394,8 @@ const map = {
   },               
   room52: {                                                                                      
     name: 'room52',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_52,
+    longDescription: descJson.long_52,
     exits: {                                                                                     
       east: 'room53',
       south: 'room59',                                                                           
@@ -409,8 +409,8 @@ const map = {
   },               
   room57: {                                                                                      
     name: 'room57',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_57,
+    longDescription: descJson.long_57,
     exits: {                                                                                     
       east: 'room58',
       south: 'room64',                                                                           
@@ -424,8 +424,8 @@ const map = {
   },               
   room58: {                                                                                      
     name: 'room58',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_58,
+    longDescription: descJson.long_58,
     exits: {                                                                                     
       east: 'room59',
       west: 'room57',
@@ -440,8 +440,8 @@ const map = {
   },               
   room59: {                                                                                      
     name: 'room59',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_59,
+    longDescription: descJson.long_59,
     exits: {                                                                                     
       east: 'room60',
       west: 'room58',
@@ -457,8 +457,8 @@ const map = {
   },               
   room60: {                                                                                      
     name: 'room60',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_60,
+    longDescription: descJson.long_60,
     exits: {                                                                                     
       east: 'room61',
       west: 'room59',
@@ -474,8 +474,8 @@ const map = {
   },               
   room61: {                                                                                      
     name: 'room61',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_61,
+    longDescription: descJson.long_61,
     exits: {                                                                                     
       west: 'room60',
       south: 'room68',
@@ -490,8 +490,8 @@ const map = {
   },               
   room62: {                                                                                      
     name: 'room62',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_62,
+    longDescription: descJson.long_62,
     exits: {                                                                                     
       east: 'room63',
       south: 'room69',
@@ -505,8 +505,8 @@ const map = {
   },               
   room63: {                                                                                      
     name: 'room63',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_63,
+    longDescription: descJson.long_63,
     exits: {                                                                                     
       west: 'room62',
       south: 'room70',
@@ -520,8 +520,8 @@ const map = {
   },               
   room64: {                                                                                      
     name: 'room64',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_64,
+    longDescription: descJson.long_64,
     exits: {                                                                                     
       east: 'room65',
       north: 'room67',
@@ -535,8 +535,8 @@ const map = {
   },               
   room65: {                                                                                      
     name: 'room65',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_65,
+    longDescription: descJson.long_65,
     exits: {                                                                                     
       north: 'room58',
       south: 'room64',
@@ -550,8 +550,8 @@ const map = {
   },               
   room66: {                                                                                      
     name: 'room66',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_66,
+    longDescription: descJson.long_66,
     exits: {                                                                                     
       west: 'room67',
       north: 'room59',
@@ -565,8 +565,8 @@ const map = {
   },               
   room67: {                                                                                      
     name: 'room67',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_67,
+    longDescription: descJson.long_67,
     exits: {                                                                                     
       east: 'room68',
       north: 'room60',
@@ -582,8 +582,8 @@ const map = {
   },               
   room68: {                                                                                      
     name: 'room68',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_68,
+    longDescription: descJson.long_68,
     exits: {                                                                                     
       east: 'room69',
       west: 'room67',
@@ -599,8 +599,8 @@ const map = {
   },               
   room69: {                                                                                      
     name: 'room69',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_69,
+    longDescription: descJson.long_69,
     exits: {                                                                                     
       east: 'room70',
       south: 'room76',
@@ -616,8 +616,8 @@ const map = {
   },               
   room70: {                                                                                      
     name: 'room70',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_70,
+    longDescription: descJson.long_70,
     exits: {                                                                                     
       west: 'room69',
       north: 'room63',
@@ -631,8 +631,8 @@ const map = {
   },                 
   room75: {                                                                                      
     name: 'room75',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_75,
+    longDescription: descJson.long_75,
     exits: {                                                                                     
       north: 'room68',
       up: 'room109',
@@ -646,8 +646,8 @@ const map = {
   },               
   room109: {                                                                                      
     name: 'room109',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_109,
+    longDescription: descJson.long_109,
     exits: {                                                                                     
       north: 'room102',
       down: 'room75',
@@ -661,8 +661,8 @@ const map = {
   },               
   room102: {                                                                                      
     name: 'room102',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_102,
+    longDescription: descJson.long_102,
     exits: {                                                                                     
       north: 'room95',
       east: 'room103',
@@ -678,8 +678,8 @@ const map = {
   },               
   room101: {                                                                                      
     name: 'room101',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_101,
+    longDescription: descJson.long_101,
     exits: {                                                                                     
       north: 'room94',
       east: 'room102',
@@ -693,8 +693,8 @@ const map = {
   },               
   room103: {                                                                                      
     name: 'room103',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_103,
+    longDescription: descJson.long_103,
     exits: {                                                                                     
       north: 'room96',
       west: 'room102',
@@ -708,8 +708,8 @@ const map = {
   },               
   room94: {                                                                                      
     name: 'room94',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_94,
+    longDescription: descJson.long_94,
     exits: {                                                                                     
       north: 'room87',
       east: 'room95',
@@ -724,8 +724,8 @@ const map = {
   },               
   room95: {                                                                                      
     name: 'room95',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_95,
+    longDescription: descJson.long_95,
     exits: {                                                                                     
       north: 'room88',
       east: 'room96',
@@ -741,8 +741,8 @@ const map = {
   },               
   room96: {                                                                                      
     name: 'room96',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_96,
+    longDescription: descJson.long_96,
     exits: {                                                                                     
       north: 'room89',
       west: 'room95',
@@ -757,8 +757,8 @@ const map = {
   },               
   room87: {                                                                                      
     name: 'room87',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_87,
+    longDescription: descJson.long_87,
     exits: {                                                                                     
       north: 'room88',
       south: 'room94',
@@ -772,8 +772,8 @@ const map = {
   },               
   room88: {                                                                                      
     name: 'room88',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_88,
+    longDescription: descJson.long_88,
     exits: {                                                                                     
       west: 'room87',
       east: 'room89',
@@ -788,8 +788,8 @@ const map = {
   },               
   room89: {                                                                                      
     name: 'room89',                                                                              
-    description: 'room102 description',                                                          
-    longDescription: 'room102 loooooooooooooooong description........',                          
+    description: descJson.short_89,
+    longDescription: descJson.long_89,
     exits: {                                                                                     
       west: 'room88',
       south: 'room96',
