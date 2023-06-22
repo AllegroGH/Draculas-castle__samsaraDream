@@ -151,13 +151,5 @@ const showMap = (map, player) => {
       dw="";
     }	    
   }
-/*  for (let i = 0; i < 7; i++) {
-    for (let k = 0; k<9; k++) {
-      console.log('┌───┐');
-      console.log('│   │');
-      console.log('└───┘');
-    }
-  }  
-*/
 };
 export default showMap;
