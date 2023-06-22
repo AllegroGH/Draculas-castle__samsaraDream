@@ -110,7 +110,7 @@ const printLookAround = (LookRoom, map, mobs) => {
       console.log(`${color.white(getRussianDirection(keyDir))}: темно...`);
       return keyDir;
     }
-    console.log(`${color.white(getRussianDirection(keyDir))}: ${color.blue(valueNextRoom, 'light')}`);
+    console.log(`${color.white(getRussianDirection(keyDir))}: ${color.blue(nextLookRoom.name, 'light')}`);
     if (nextLookRoom.mobs.length !== 0 && mobs[locatedInsideMob].killed === false) {
       printMobs(nextLookRoom, mobs, 2);
     }
