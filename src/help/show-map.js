@@ -10,16 +10,26 @@ const showMap = (map, player) => {
   34:'room34', 40:'room40'}
   var floor_2 = {47:'room47',52:'room52',53:'room53',54:'room54',57:'room57',58:'room58',59:'room59',60:'room60',
   61:'room61',62:'room62',63:'room63',64:'room64',65:'room65',66:'room66',67:'room67',68:'room68',
-  69:'room69',70:'room70',75:'room75'} 
+  69:'room69',70:'room70',74:'room74'} 
   var floor_3 = {87:'room87',88:'room88',89:'room89',94:'room94', 95:'room95',96:'room96',101:'room101',102:'room102',
   103:'room103',109:'room109'} 
 
   function get_up(i,j) {
-    var visited = map[floor_1[i]].visited;
+    if (j==1){
+      var visited = map[floor_1[i]].visited;
+      var obj = map[floor_1[i]].exits;
+    };
+    if (j==2){
+      var visited = map[floor_2[i]].visited;
+      var obj = map[floor_2[i]].exits;
+    };
+    if (j==3){
+      var visited = map[floor_3[i]].visited;
+      var obj = map[floor_3[i]].exits;
+    };
     var left = "";
     var right = "";
     var center = "";
-    var obj = map[floor_1[i]].exits;	  
     center = '   ';
     ('west' in obj)?left = '─':left = '┌';	     
     ('east' in obj)?right = '─':right = '┐';
@@ -35,11 +45,21 @@ const showMap = (map, player) => {
   }
 
   function get_dw(i,j) {
-    var visited = map[floor_1[i]].visited;
+    if (j==1){
+      var visited = map[floor_1[i]].visited;
+      var obj = map[floor_1[i]].exits;
+    };
+    if (j==2){
+      var visited = map[floor_2[i]].visited;
+      var obj = map[floor_2[i]].exits;
+    };
+    if (j==3){
+      var visited = map[floor_3[i]].visited;
+      var obj = map[floor_3[i]].exits;
+    };
     var left = "";
     var right = "";
     var center = "";
-    var obj = map[floor_1[i]].exits;	  
     center = '   ';
     ('west' in obj)?left = '─':left = '└';	     
     ('east' in obj)?right = '─':right = '┘';
@@ -55,46 +75,71 @@ const showMap = (map, player) => {
   }
 
   function get_mid(i,j) {
-    var visited = map[floor_1[i]].visited;
-    var obj = map[floor_1[i]].exits;	  
+    if (j==1){
+      var visited = map[floor_1[i]].visited;
+      var obj = map[floor_1[i]].exits;
+      var key = floor_1[i];
+    };
+    if (j==2){
+      var visited = map[floor_2[i]].visited;
+      var obj = map[floor_2[i]].exits;
+      var key = floor_2[i];
+    };
+    if (j==3){
+      var visited = map[floor_3[i]].visited;
+      var obj = map[floor_3[i]].exits;
+      var key = floor_3[i];
+    };
     var room = "";	
     var west = "";
     var east = "";
     ('west' in obj)?west = ' ':west = '│';
     ('east' in obj)?east = ' ':east = '│';
-    room = west+"   "+east;	  
+    cur_room==key?room = west+" * "+east:room = west+"   "+east;	  
     visited?west=west:room='*****';
+//    console.log(cur_room);
+//    console.log(key);
     return room;  
   }
 
+  console.log("Этаж "+cur_floor);
   var empty = '*****'	  
-//  var middle = '│   │'
-//  var south = '└───┘'
-//  console.log(JSON.stringify(`${map[player.room].exits}`));
   var k=0;	
   var up=""; 	 
   var mid=""; 	 
   var dw=""; 	 
-  for (let i=1; i<43; i++)
+  if (cur_floor == 1){
+    var start = 1;
+    var finish = 43;
+  };
+  if (cur_floor == 2){
+    var start = 43;
+    var finish = 80;
+  };
+  if (cur_floor == 3){
+    var start = 78;
+    var finish = 113;
+  };
+  for (let i=start;i<finish; i++)
   {
     if (cur_floor==1)
     {
       (i in floor_1)?up+=get_up(i,cur_floor):up+=empty;	  
       (i in floor_1)?mid+=get_mid(i,cur_floor):mid+=empty;	  
       (i in floor_1)?dw+=get_dw(i,cur_floor):dw+=empty;	  
-    }
+    };
     if (cur_floor==2)
     {
       (i in floor_2)?up+=get_up(i,cur_floor):up+=empty;	  
       (i in floor_2)?mid+=get_mid(i,cur_floor):mid+=empty;	  
       (i in floor_2)?dw+=get_dw(i,cur_floor):dw+=empty;	  
-    }
+    };
     if (cur_floor==3)
     {
       (i in floor_3)?up+=get_up(i,cur_floor):up+=empty;	  
       (i in floor_3)?mid+=get_mid(i,cur_floor):mid+=empty;	  
       (i in floor_3)?dw+=get_dw(i,cur_floor):dw+=empty;	  
-    }
+    };
     k++;
     if (k>6) {
       k=0;	    
