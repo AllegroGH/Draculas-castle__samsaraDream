@@ -13,6 +13,7 @@ import status from './status.js';
 import help from './help/common-help.js';
 import commandParser from './command-parser.js';
 import { startBattle, bash, up } from './battle.js';
+import inspect from './inspect.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -97,6 +98,10 @@ const commander = (command, arg) => {
     case 'exit':
       exit();
       break;
+    case 'inspect':
+      inspect(arg, map, player, mobs);
+      break;
+
     default:
     // return arg ? false : 0;
   }
@@ -130,7 +135,7 @@ const playGame = async () => {
   const promise = new Promise((resolve) => {
     process.stdin.on('keypress', (str, key) => {
       if (player.gameover === 'player lost') resolve(true);
-      // ПОСЛЕ ЭТОГО НУЖНО СРАЗУ ВЫХОДИТЬ -- нужно все в функции сделать?
+      // ПОСЛЕ ЭТОГО НУЖНО СРАЗУ ВЫХОДИТЬ -- нужно все в функции сделать
       if (key.ctrl && key.name === 'c') process.exit();
       if (rawMode) {
         pressedKey = key.name || key.sequence;
