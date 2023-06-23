@@ -344,7 +344,6 @@ const map = {
     visited: true,
     floor: 1,
   },
-
   room47: {
     name: 'Лестница',
     description: descJson.short_47,
