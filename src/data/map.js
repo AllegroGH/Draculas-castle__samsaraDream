@@ -1,4 +1,12 @@
-import descJson from './descriptions.json' assert { type: 'json' };
+// const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
+// const descJson = loadJSON('./descriptions.json');
+
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const descJson = require('./descriptions.json');
+
+// import descJson from './descriptions.json' assert {type: 'json'};
 
 const map = {
   room5: {
@@ -13,7 +21,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room12: {
@@ -29,7 +37,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room11: {
@@ -45,7 +53,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room10: {
@@ -60,7 +68,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room15: {
@@ -75,7 +83,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room16: {
@@ -91,7 +99,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room17: {
@@ -108,7 +116,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room18: {
@@ -125,7 +133,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room19: {
@@ -141,7 +149,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room20: {
@@ -156,7 +164,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room21: {
@@ -169,9 +177,9 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: ["helm"],
+    hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room22: {
@@ -184,9 +192,9 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: ["sword"],
+    hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room23: {
@@ -201,7 +209,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room24: {
@@ -216,7 +224,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room25: {
@@ -233,7 +241,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room26: {
@@ -249,7 +257,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room27: {
@@ -266,7 +274,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room28: {
@@ -281,7 +289,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room32: {
@@ -296,7 +304,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room33: {
@@ -312,7 +320,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room34: {
@@ -325,9 +333,9 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: ["shield"],
+    hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 1,
   },
   room40: {
@@ -357,7 +365,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room54: {
@@ -373,7 +381,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room53: {
@@ -389,7 +397,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room52: {
@@ -404,7 +412,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room57: {
@@ -417,9 +425,9 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: ["armor"],
+    hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room58: {
@@ -435,7 +443,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room59: {
@@ -452,7 +460,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room60: {
@@ -469,7 +477,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room61: {
@@ -485,7 +493,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room62: {
@@ -500,7 +508,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room63: {
@@ -513,13 +521,13 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: ["ring"],
+    hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room64: {
-    name: 'Библиотека',
+    name: 'Кладовая',
     description: descJson.short_64,
     longDescription: descJson.long_64,
     exits: {
@@ -530,11 +538,11 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room65: {
-    name: 'Библиотека',
+    name: 'Кладовая',
     description: descJson.short_65,
     longDescription: descJson.long_65,
     exits: {
@@ -545,7 +553,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room66: {
@@ -560,7 +568,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room67: {
@@ -577,7 +585,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room68: {
@@ -593,7 +601,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room69: {
@@ -609,7 +617,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room70: {
@@ -624,7 +632,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room74: {
@@ -639,7 +647,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 2,
   },
   room109: {
@@ -654,7 +662,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room102: {
@@ -671,7 +679,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room101: {
@@ -686,7 +694,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room103: {
@@ -701,7 +709,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room94: {
@@ -717,7 +725,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room95: {
@@ -734,7 +742,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room96: {
@@ -750,7 +758,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room87: {
@@ -765,7 +773,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room88: {
@@ -781,7 +789,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
   room89: {
@@ -796,7 +804,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: false,
+    visited: true,
     floor: 3,
   },
 };
