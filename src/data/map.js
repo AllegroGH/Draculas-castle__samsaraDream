@@ -1,4 +1,11 @@
-import descJson from './descriptions.json' assert {type: 'json'};
+//const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
+//const descJson = loadJSON('./descriptions.json');
+
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const descJson = require('./descriptions.json');
+
+//import descJson from './descriptions.json' assert {type: 'json'};
 
 const map = {                                                                                    
   room5: {                                                                                       
