@@ -519,7 +519,7 @@ const map = {
     floor: 2,
   },
   room64: {
-    name: 'Кладовая',
+    name: 'Библиотека',
     description: descJson.short_64,
     longDescription: descJson.long_64,
     exits: {
@@ -534,7 +534,7 @@ const map = {
     floor: 2,
   },
   room65: {
-    name: 'Кладовая',
+    name: 'Библиотека',
     description: descJson.short_65,
     longDescription: descJson.long_65,
     exits: {
