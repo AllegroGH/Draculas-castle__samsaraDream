@@ -1,38 +1,37 @@
 const items = {
   // items from rooms
   helm: {
-    name: '…helm',
-    ifTake: '…take helm',
+    name: 'Костяной драконий шлем',
+    ifTake: 'Ты нашел костяной драконий шлем! (+100 очков здоровья)',
     maxHP: 100,
   },
 
   armor: {
-    name: '…armor',
-    ifTake: '…take armor',
+    name: 'Паучьи доспехи',
+    ifTake: 'Ты нашел паучьи доспехи! (+500 очков здоровья)',
     maxHP: 500,
   },
 
   sword: {
-    name: '…sword',
-    ifTake: '…take sword',
+    name: 'Небесный меч',
+    ifTake: 'Ты нашел небесный меч! (+15-30 к урону)',
     minDamage: 15,
     maxDamage: 30,
   },
 
   shield: {
-    name: '…shiled',
-    ifTake: '…take shield',
+    name: 'Костяной щит',
+    ifTake: 'Ты нашел костяной щит! (+30% к блоку щитом, +30% к умению «сбить»)',
     block: 0.3,
     bash: 0.3,
   },
 
   ring: {
-    name: '…ring',
-    ifTake: '….take ring',
+    name: 'Кольцо охотника на демонов',
+    ifTake: 'Ты нашел кольцо охотника на демонов! (+10-25 к урону)',
     minDamage: 10,
     maxDamage: 25,
   },
-
   // items from mobs
   gargoyleRing: {
     name: 'Кольцо Горгульи',

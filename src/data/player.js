@@ -12,7 +12,7 @@ const player = {
   items: [],
   inBattle: false,
   resting: false,
-  room: 'room102',
+  room: 'room40',
   gameover: false,
 };
 
