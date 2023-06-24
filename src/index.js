@@ -92,7 +92,7 @@ const commander = (command, arg) => {
       attack(arg);
       break;
     case 'inspect':
-      inspect(arg, map, player, mobs);
+      inspect(arg.toLowerCase(), map, player, mobs);
       break;
     case 'prayer':
       prayer(player);

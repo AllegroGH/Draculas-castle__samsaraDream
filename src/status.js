@@ -6,9 +6,9 @@ import color from 'bash-color';
 const getPlayerParams = (player) => [
   `${color.green('Очки здоровья:   ', 'light')} ${player.curHP}/${player.maxHP}`,
   `${color.green('Наносимый урон:  ', 'light')} ${player.minDamage}-${player.maxDamage}`,
-  `${color.green('Уклонение:       ', 'light')} ${player.dodge * 100}%`,
-  `${color.green('Блок щитом:      ', 'light')} ${player.block * 100}%`,
-  `${color.green('Сбить противника:', 'light')} ${player.bash * 100}%`,
+  `${color.green('Уклонение:       ', 'light')} ${Math.floor(player.dodge * 100)}%`,
+  `${color.green('Блок щитом:      ', 'light')} ${Math.floor(player.block * 100)}%`,
+  `${color.green('Сбить противника:', 'light')} ${Math.floor(player.bash * 100)}%`,
 ].join('\n');
 
 // prettier-ignore
