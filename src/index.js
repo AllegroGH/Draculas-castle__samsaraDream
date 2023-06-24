@@ -128,7 +128,7 @@ const keypressHandler = (key) => {
     if (pressedKey === '+') up(player);
     if (pressedKey !== 'return' && !player.lag) {
       const agro = navigation(pressedKey, map, player, mobs);
-      if (agro) {
+      if (agro && !mobs[agro].killed) {
         player.inBattle = agro;
         startBattle(player, mobs[agro], true);
       }
