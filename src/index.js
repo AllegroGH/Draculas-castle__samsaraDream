@@ -129,7 +129,7 @@ const keypressHandler = (key) => {
     /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
     if (pressedKey === '0' || pressedKey === 'insert') bash(player, mobs);
     if (pressedKey === '+') up(player);
-    if (pressedKey !== 'return' && !player.lag) {
+    if (pressedKey !== 'return' && !player.lag && !player.bashed) {
       const agro = navigation(pressedKey, map, player, mobs);
       if (agro && !mobs[agro].killed) {
         player.inBattle = agro;

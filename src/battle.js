@@ -152,8 +152,8 @@ const startBattle = (player, mob, agro) => {
 
   player.curHP = 1000;
   // mob.curHP = 500;
-  player.minDamage = 1;
-  player.maxDamage = 70;
+  player.minDamage = 100;
+  player.maxDamage = 7000;
   // player.dodge = 0;
   // player.block = 0;
   player.bash = 0.8;
