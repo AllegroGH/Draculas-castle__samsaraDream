@@ -21,7 +21,7 @@ const getItems = (player, items) => {
   items.map((item) => {
     const gameItem = gameItems[item];
     console.log();
-    console.log(color.green(gameItem.ifTake, 'light'));
+    console.log(color.cyan(gameItem.ifTake, 'light'));
     addParams(player, gameItem);
     player.items.push(item);
     return item;
