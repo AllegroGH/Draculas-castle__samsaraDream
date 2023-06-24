@@ -6,10 +6,8 @@ import getItems from './get-items.js';
 const getRandomDamage = (min, max) => Math.round(Math.random() * (max - min)) + min;
 
 const getDamage = (who, whom) => {
-  if (!whom.bashed) {
-    if (Math.random() <= whom.dodge) return 'dodged';
-    if (Math.random() <= whom.block) return 'blocked';
-  }
+  if (!whom.bashed && Math.random() <= whom.dodge) return 'dodged';
+  if (!whom.bashed && Math.random() <= whom.block) return 'blocked';
   const damage = getRandomDamage(who.minDamage, who.maxDamage);
   const correctedDamage = Math.round((damage * (whom.bashed ? 1.5 : 1)) / (who.bashed ? 1.5 : 1));
   whom.curHP -= correctedDamage;
@@ -18,12 +16,11 @@ const getDamage = (who, whom) => {
 
 const getDamageStrength = (damage) => {
   let result = '';
-  if (damage <= 10) return '';
-  if (damage > 10 && damage <= 20) result = ' сильно';
-  if (damage > 20 && damage <= 40) result = ' очень сильно';
-  if (damage > 40 && damage <= 60) result = color.purple(' БОЛЬНО');
-  if (damage > 60 && damage <= 80) result = color.purple(' ОЧЕНЬ БОЛЬНО');
-  if (damage > 80 && damage <= 100) result = color.purple(' НЕВЫНОСИМО БОЛЬНО');
+  if (damage > 10) result = ' сильно';
+  if (damage > 20) result = ' очень сильно';
+  if (damage > 40) result = color.purple(' БОЛЬНО');
+  if (damage > 60) result = color.purple(' ОЧЕНЬ БОЛЬНО');
+  if (damage > 80) result = color.purple(' НЕВЫНОСИМО БОЛЬНО');
   if (damage > 100) result = color.purple(' ************* КАК БОЛЬНО', true);
   return result;
 };
@@ -119,8 +116,8 @@ const startBattle = (player, mob, agro) => {
 
   player.curHP = 1000;
   // mob.curHP = 500;
-  player.minDamage = 100;
-  player.maxDamage = 500;
+  player.minDamage = 10;
+  player.maxDamage = 80;
   // player.dodge = 0;
   // player.block = 0;
   player.bash = 0.8;
@@ -131,6 +128,19 @@ const startBattle = (player, mob, agro) => {
 
   round(player, mob, agro);
   const timerId = setInterval(() => round(player, mob, agro, timerId), 2000);
+};
+
+const doBash = (player, mob) => {
+  if (Math.random() <= (mob.bashed ? player.bash / 2 : player.bash)) {
+    console.log(color.green(`Своим мощным ударом ты повалил ${mob.nameV} на пол!`, true));
+    mob.bashed = true;
+    mob.lag = 3;
+    player.lag = 2;
+  } else {
+    console.log(color.red(`Ты попытался повалить ${mob.nameV}, но в результате упал сам!`, true));
+    player.bashed = true;
+    player.lag = 3;
+  }
 };
 
 const bash = (player, mobs) => {
@@ -144,16 +154,8 @@ const bash = (player, mobs) => {
     return;
   }
   const mob = mobs[player.inBattle];
-  if (Math.random() <= (mob.bashed ? player.bash / 2 : player.bash)) {
-    console.log(color.green(`Своим мощным ударом ты повалил ${mob.nameV} на пол!`, true));
-    mob.bashed = true;
-    mob.lag = 3;
-    player.lag = 2;
-  } else {
-    console.log(color.red(`Ты попытался повалить ${mob.nameV}, но в результате упал сам!`, true));
-    player.bashed = true;
-    player.lag = 3;
-  }
+
+  doBash(player, mob);
 };
 
 const up = (player) => {

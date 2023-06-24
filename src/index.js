@@ -14,6 +14,7 @@ import help from './help/common-help.js';
 import commandParser from './command-parser.js';
 import { startBattle, bash, up } from './battle.js';
 import inspect from './inspect.js';
+import prayer from './prayer.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -90,13 +91,15 @@ const commander = (command, arg) => {
       setNavigatinMode(true);
       attack(arg);
       break;
-    case 'exit':
-      exit();
-      break;
     case 'inspect':
       inspect(arg, map, player, mobs);
       break;
-
+    case 'prayer':
+      prayer(player);
+      break;
+    case 'exit':
+      exit();
+      break;
     default:
     // return arg ? false : 0;
   }
