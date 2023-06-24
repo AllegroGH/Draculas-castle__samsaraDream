@@ -17,13 +17,15 @@ const getDamage = (who, whom) => {
 };
 
 const getDamageStrength = (damage) => {
+  let result = '';
   if (damage <= 10) return '';
-  if (damage > 10 && damage <= 20) return ' сильно';
-  if (damage > 20 && damage <= 40) return ' очень сильно';
-  if (damage > 40 && damage <= 60) return color.purple(' БОЛЬНО');
-  if (damage > 60 && damage <= 80) return color.purple(' ОЧЕНЬ БОЛЬНО');
-  if (damage > 80 && damage <= 100) return color.purple(' НЕВЫНОСИМО БОЛЬНО');
-  return color.purple(' ************* КАК БОЛЬНО', true);
+  if (damage > 10 && damage <= 20) result = ' сильно';
+  if (damage > 20 && damage <= 40) result = ' очень сильно';
+  if (damage > 40 && damage <= 60) result = color.purple(' БОЛЬНО');
+  if (damage > 60 && damage <= 80) result = color.purple(' ОЧЕНЬ БОЛЬНО');
+  if (damage > 80 && damage <= 100) result = color.purple(' НЕВЫНОСИМО БОЛЬНО');
+  if (damage > 100) result = color.purple(' ************* КАК БОЛЬНО', true);
+  return result;
 };
 
 const getPlayerOutputString = (player, mob, damage) => {
@@ -90,13 +92,21 @@ const round = (player, mob, agro, timerId = false) => {
   if ((player.curHP < 1 || mob.curHP < 1) && timerId) clearInterval(timerId);
   if (player.curHP < 1) {
     player.gameover = 'player lost';
-    console.log('сдох ты.... press any key');
+    console.log('нажми любую клавишу...');
     return 'player lost';
   }
   if (mob.curHP < 1) {
     mob.killed = true;
     player.inBattle = false;
+    if (player.lag) {
+      player.bashed = false;
+      player.lag = 0;
+    }
     getItems(player, mob.items);
+    if (mob.name === 'Граф Дракула') {
+      console.log('нажми любую клавишу...');
+      player.gameover = 'player won';
+    } else console.log(color.blue('Ты победил в этом бою! Пора двигаться дальше.'));
     return 'player won';
   }
 
@@ -105,23 +115,22 @@ const round = (player, mob, agro, timerId = false) => {
 };
 
 const startBattle = (player, mob, agro) => {
-  // player.curHP = 500;
+  mob.curHP = mob.maxHP;
+
+  player.curHP = 1000;
   // mob.curHP = 500;
-  // player.maxDamage = 100;
+  player.minDamage = 100;
+  player.maxDamage = 500;
   // player.dodge = 0;
   // player.block = 0;
-  // player.bash = 0.8;
+  player.bash = 0.8;
   // mob.dodge = 0.5;
   // mob.block = 0.5;
   // mob.lag = 3;
   // mob.bashed = 1;
 
   round(player, mob, agro);
-  const timerId = setInterval(() => {
-    const roundResult = round(player, mob, agro, timerId);
-    if (roundResult !== 'the battle continues') console.log('battle ended...');
-    if (roundResult === 'player won') console.log('you won this battle...');
-  }, 2000);
+  const timerId = setInterval(() => round(player, mob, agro, timerId), 2000);
 };
 
 const bash = (player, mobs) => {
