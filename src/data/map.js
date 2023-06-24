@@ -1,12 +1,7 @@
-// const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
-// const descJson = loadJSON('./descriptions.json');
-
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const descJson = require('./descriptions.json');
-
-// import descJson from './descriptions.json' assert {type: 'json'};
 
 const map = {
   room5: {
@@ -17,11 +12,11 @@ const map = {
       south: 'room12',
       up: 'room47',
     },
-    mobs: [],
+    mobs: ['gargoyle3'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room12: {
@@ -37,7 +32,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room11: {
@@ -53,7 +48,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room10: {
@@ -68,7 +63,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room15: {
@@ -79,11 +74,11 @@ const map = {
       east: 'room16',
       south: 'room22',
     },
-    mobs: [],
+    mobs: ['livingArmor1'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room16: {
@@ -99,7 +94,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room17: {
@@ -116,7 +111,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room18: {
@@ -133,7 +128,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room19: {
@@ -149,7 +144,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room20: {
@@ -164,7 +159,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room21: {
@@ -177,9 +172,13 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: [],
+    hiddenItems: [
+      'сундук',
+      'helm',
+      'Обыскивая сундук, ты замечаешь какой-то шлем. Каждый элемент шлема выполнен с большой тщательностью, отражая как  мастерство кузнеца, так и воинское искусство хозяина, сумевшего победить столь могущественное создание. Череп дракона, создает впечатление неприступности и силы, а его зубы, острые как бритва, говорят о его опасности и беспощадности. На вершине шлема расположен величественный рог. Глаза дракона выполнены из блестящих камней, которые добавляют шлему загадочности и таинственности.',
+    ],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room22: {
@@ -192,9 +191,13 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: [],
+    hiddenItems: [
+      'сундук',
+      'sword',
+      'Изрядно помучившись с замком, ты, наконец, открываешь сундук. Твоему взгляду предстает древний меч, не тронутый пылью и паутиной. Его клинок создавал впечатление принадлежности если не королю, то великому и могущественному воину, не единожды воспользовавшегося им для свершения великих подвигов. Рукоять меча была украшена сложной, изящной резьбой, которая в свете факелов казалась чередованием пылающих огней на ночном небе. Несмотря на длительное заточение в сундуке, меч держался возвышенно, будто бы взывая к новой битве и сообщая, что с этого момента он больше не собирается пылиться без дела. Казалось, будто у меча был настоящий магический потенциал, который впитал в себя всю мощь и ярость своих прошлых хозяев.',
+    ],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room23: {
@@ -209,7 +212,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room24: {
@@ -224,7 +227,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room25: {
@@ -241,7 +244,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room26: {
@@ -257,7 +260,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room27: {
@@ -270,11 +273,11 @@ const map = {
       west: 'room26',
       north: 'room20',
     },
-    mobs: [],
+    mobs: ['livingArmor3'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room28: {
@@ -289,7 +292,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room32: {
@@ -304,7 +307,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room33: {
@@ -316,11 +319,11 @@ const map = {
       west: 'room32',
       south: 'room40',
     },
-    mobs: [],
+    mobs: ['gargoyle1'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room34: {
@@ -333,9 +336,13 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: [],
+    hiddenItems: [
+      'стеллаж',
+      'shield',
+      'Обыскивая стеллаж, ты замечаешь щит воина-вампира, сделанный из костей поверженных им существ, и выглядит он как орудие мести и ужаса. Каждая кость, подобранная с особой тщательностью и обработанная с невероятной точностью, придаёт щиту демонический устрашающий вид. На его поверхности можно увидеть следы битв, глубокие царапины, оставленные когтями неведомых существ, и защитные рунические знаки. Верхняя часть щита состоит их острых костей, которые служат защитой от ударов сверху. Боковые части щита украшены острыми костяными шипами, которые добавляют ему дополнительную защиту и опасность для противника.',
+    ],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 1,
   },
   room40: {
@@ -361,11 +368,11 @@ const map = {
       south: 'room54',
       down: 'room5',
     },
-    mobs: [],
+    mobs: ['bat2'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room54: {
@@ -381,7 +388,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room53: {
@@ -397,7 +404,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room52: {
@@ -412,7 +419,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room57: {
@@ -425,9 +432,13 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: [],
+    hiddenItems: [
+      'стойка',
+      'armor',
+      'Обыскивая стойку, ты замечаешь жуткую броню из кожи огромных пауков. Доспехи выполнены не из металла, а из нарезанной тонкими лентами кожи гигантских пауков, сшитой воедино. Наверное, такой эластичный материал не стеснял движений. А отвратительные жвала огромных пауков были насквозь пропитаны магией, защищавшей своего владельца от любых ударов.',
+    ],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room58: {
@@ -443,7 +454,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room59: {
@@ -456,11 +467,11 @@ const map = {
       south: 'room66',
       north: 'room52',
     },
-    mobs: [],
+    mobs: ['gargoyle2'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room60: {
@@ -477,7 +488,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room61: {
@@ -493,7 +504,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room62: {
@@ -508,7 +519,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room63: {
@@ -521,9 +532,13 @@ const map = {
     },
     mobs: [],
     items: [],
-    hiddenItems: [],
+    hiddenItems: [
+      'стол',
+      'ring',
+      'В ящике стола ты видишь изящное и неповторимое творение неизвестного ювелира. Кольцо выполнено из блестящего золота, которое ловит и отражает свет, создавая впечатление, что оно оживает на пальце своего владельца. На верхней части кольца расположена гравировка, изображающая сцену охоты на демона – мрачного существа с крыльями и острыми зубами. Невероятная детализация гравировки придаёт кольцу реалистичный вид и заставляет воображение бежать далеко в мире фантазий и опасностей. Вокруг гравировки расположены маленькие бриллианты, которые добавляют кольцу блеск и роскошь. Кольцо охотника на демонов – это не только украшение, но и символ борьбы с тьмой и злом, который подчёркивает храбрость и стойкость своего обладателя.',
+    ],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room64: {
@@ -532,13 +547,13 @@ const map = {
     longDescription: descJson.long_64,
     exits: {
       east: 'room65',
-      north: 'room67',
+      north: 'room57',
     },
     mobs: [],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room65: {
@@ -553,7 +568,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room66: {
@@ -568,7 +583,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room67: {
@@ -585,7 +600,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room68: {
@@ -597,11 +612,11 @@ const map = {
       west: 'room67',
       north: 'room61',
     },
-    mobs: [],
+    mobs: ['livingArmor2'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room69: {
@@ -617,7 +632,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room70: {
@@ -632,22 +647,22 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room74: {
     name: 'Лестница',
-    description: descJson.short_75,
-    longDescription: descJson.long_75,
+    description: descJson.short_74,
+    longDescription: descJson.long_74,
     exits: {
       north: 'room67',
       up: 'room109',
     },
-    mobs: [],
+    mobs: ['bat1'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 2,
   },
   room109: {
@@ -662,7 +677,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room102: {
@@ -675,11 +690,11 @@ const map = {
       south: 'room109',
       west: 'room101',
     },
-    mobs: [],
+    mobs: ['stoneStatue2'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room101: {
@@ -694,7 +709,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room103: {
@@ -709,7 +724,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room94: {
@@ -725,7 +740,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room95: {
@@ -742,7 +757,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room96: {
@@ -758,7 +773,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room87: {
@@ -769,11 +784,11 @@ const map = {
       east: 'room88',
       south: 'room94',
     },
-    mobs: [],
+    mobs: ['stoneStatue1'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room88: {
@@ -789,7 +804,7 @@ const map = {
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
   room89: {
@@ -800,11 +815,11 @@ const map = {
       west: 'room88',
       south: 'room96',
     },
-    mobs: [],
+    mobs: ['dracula'],
     items: [],
     hiddenItems: [],
     darkRoom: false,
-    visited: true,
+    visited: false,
     floor: 3,
   },
 };
