@@ -30,7 +30,8 @@ const intro = () => {
 };
 
 const outro = () => {
-  console.log('game over');
+  if (player.gameover === 'player lost') console.log('game over - you LOST');
+  if (player.gameover === 'player won') console.log('game over - you WON!!!!!!!!');
 };
 
 const setNavigatinMode = (mode) => {
@@ -53,12 +54,6 @@ const checkMobToAttack = (arg) => {
   return target;
 };
 
-const battle = (target, agro = false) => {
-  // if (agro) console.log('in battle with agro');
-  console.log('in battle');
-  startBattle(player, mobs[target], agro);
-};
-
 const attack = (arg) => {
   const target = checkMobToAttack(arg);
   if (!target) {
@@ -70,7 +65,7 @@ const attack = (arg) => {
     return;
   }
   player.inBattle = target;
-  battle(target);
+  startBattle(player, mobs[target]);
 };
 
 const exit = () => {
@@ -120,12 +115,26 @@ const doCommand = (line) => {
   }
   const [command, arg] = commandParser(line);
   if (!command) console.log(arg);
-  // if (!command) temp();
-  else {
-    // console.log([command, arg]);
-    commander(command, arg);
-  }
+  else commander(command, arg);
   return false;
+};
+
+const keypressHandler = (key) => {
+  if (key.ctrl && key.name === 'c') process.exit();
+  if (rawMode) {
+    pressedKey = key.name || key.sequence;
+    /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
+    if (pressedKey === '0' || pressedKey === 'insert') bash(player, mobs);
+    if (pressedKey === '+') up(player);
+    if (pressedKey !== 'return' && !player.lag) {
+      const agro = navigation(pressedKey, map, player, mobs);
+      if (agro) {
+        player.inBattle = agro;
+        startBattle(player, mobs[agro], true);
+      }
+    }
+    if (pressedKey === 'return') setNavigatinMode(false);
+  }
 };
 
 const playGame = async () => {
@@ -134,28 +143,11 @@ const playGame = async () => {
 
   const promise = new Promise((resolve) => {
     process.stdin.on('keypress', (str, key) => {
-      if (player.gameover === 'player lost') resolve(true);
-      // ПОСЛЕ ЭТОГО НУЖНО СРАЗУ ВЫХОДИТЬ -- нужно все в функции сделать
-      if (key.ctrl && key.name === 'c') process.exit();
-      if (rawMode) {
-        pressedKey = key.name || key.sequence;
-        /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
-        if (pressedKey === '0' || pressedKey === 'insert') bash(player, mobs);
-        if (pressedKey === '+') up(player);
-        // !!!!!!!!!!!!!!!!!!!!!!!! ЗДЕСЬ НУЖНО В НАВИГАЦИИ ДОБАВИТЬ УСЛОВИЕ, ЧТО ИГРОК НЕ СБАШЕН
-        /*
-        if (pressedKey === '-') {
-          if (!player.bashed) {
-            player.inBattle = false;
-            console.log('ты убежал');
-          }
-        }
-        */
-        // if (pressedKey !== 'return') navigation(pressedKey, map, player, mobs);
-        // else setNavigatinMode(false);
-        if (pressedKey !== 'return' && !player.lag) navigation(pressedKey, map, player, mobs);
-        if (pressedKey === 'return') setNavigatinMode(false);
+      if (player.gameover === 'player won' || player.gameover === 'player lost') {
+        resolve(true);
+        return;
       }
+      keypressHandler(key);
     });
 
     rl.on('line', (line) => {
