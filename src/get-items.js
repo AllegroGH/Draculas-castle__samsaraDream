@@ -18,7 +18,7 @@ const addParams = (player, gameItem) => {
 
 const getItems = (player, items) => {
   if (!items.length) return;
-  const result = items.map((item) => {
+  items.map((item) => {
     const gameItem = gameItems[item];
     console.log();
     console.log(color.green(gameItem.ifTake, 'light'));
@@ -26,8 +26,6 @@ const getItems = (player, items) => {
     player.items.push(item);
     return item;
   });
-  console.log(result);
-  console.log(player);
 };
 
 export default getItems;
