@@ -2,7 +2,7 @@
 import color from 'bash-color';
 import gameItems from './data/items.js';
 
-const accurateSum = (arg1, arg2) => Math.round((arg1 + arg2) * 100) / 100;
+const accurateSum = (arg1, arg2) => Math.floor(arg1 * 100 + arg2 * 100) / 100;
 
 const addParams = (player, gameItem) => {
   if (gameItem.maxHP) {
