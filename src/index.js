@@ -27,7 +27,7 @@ let gameover;
 let pressedKey;
 
 const intro = () => {
-  console.log('start game');
+  console.log('start game >>> >>> >>>');
 };
 
 const outro = () => {
@@ -38,8 +38,8 @@ const outro = () => {
 const setNavigatinMode = (mode) => {
   process.stdin.setRawMode(mode);
   rawMode = mode;
-  if (mode) console.log(color.black('# включен режим навигации', true));
-  else console.log(color.black('# включен режим ввода команд', true));
+  if (mode) console.log(color.black('# режим навигации и управления', true));
+  else console.log(color.black('# режим ввода команд', true));
 };
 
 const checkMobToAttack = (arg) => {
@@ -141,8 +141,8 @@ const keypressHandler = (key) => {
 };
 
 const playGame = async () => {
-  process.stdin.setRawMode(true);
-  rawMode = true;
+  // process.stdin.setRawMode(true);
+  // rawMode = true;
 
   const promise = new Promise((resolve) => {
     process.stdin.on('keypress', (str, key) => {
@@ -169,6 +169,7 @@ const playGame = async () => {
 const game = async () => {
   intro();
   readline.emitKeypressEvents(process.stdin);
+  console.log(color.red('Первым делом введи команду "справка":'));
   await playGame();
   outro();
 };

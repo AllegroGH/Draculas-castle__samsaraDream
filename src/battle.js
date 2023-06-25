@@ -150,13 +150,13 @@ const round = (player, mob, agro, timerId = false) => {
 const startBattle = (player, mob, agro) => {
   mob.curHP = mob.maxHP;
 
-  player.curHP = 1000;
+  // player.curHP = 1000;
   // mob.curHP = 500;
-  player.minDamage = 100;
-  player.maxDamage = 7000;
+  // player.minDamage = 1;
+  // player.maxDamage = 7;
   // player.dodge = 0;
   // player.block = 0;
-  player.bash = 0.8;
+  // player.bash = 0.8;
   // mob.dodge = 0.5;
   // mob.block = 0.5;
   // mob.lag = 3;
@@ -195,7 +195,11 @@ const bash = (player, mobs) => {
 };
 
 const up = (player) => {
-  if (player.lag || !player.bashed) return;
+  if (player.lag) return;
+  if (!player.bashed) {
+    console.log('Ты и так стоишь как вкопанный!');
+    return;
+  }
   player.bashed = false;
   console.log(color.green('Ты встал на ноги', true));
 };
