@@ -172,11 +172,8 @@ const map = {
     },
     mobs: [],
     items: [],
-<<<<<<< HEAD
     visited: true,
     hiddenItems: ["helm"],
-=======
->>>>>>> main
     hiddenItems: [
       ['сундук'],
       'helm',
@@ -196,11 +193,8 @@ const map = {
     },
     mobs: [],
     items: [],
-<<<<<<< HEAD
     visited: true,
     hiddenItems: ["sword"],
-=======
->>>>>>> main
     hiddenItems: [
       ['сундук'],
       'sword',
@@ -346,11 +340,8 @@ const map = {
     },
     mobs: [],
     items: [],
-<<<<<<< HEAD
     visited: true,
     hiddenItems: ["shield"],
-=======
->>>>>>> main
     hiddenItems: [
       ['стеллаж'],
       'shield',
@@ -446,11 +437,8 @@ const map = {
     },
     mobs: [],
     items: [],
-<<<<<<< HEAD
     visited: true,
     hiddenItems: ["armor"],
-=======
->>>>>>> main
     hiddenItems: [
       ['стойка', 'стойку'],
       'armor',
@@ -551,10 +539,7 @@ const map = {
     },
     mobs: [],
     items: [],
-<<<<<<< HEAD
     visited: true,
-=======
->>>>>>> main
     hiddenItems: [
       ['стол'],
       'ring',
