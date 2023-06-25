@@ -45,19 +45,6 @@ const getDamageStrength = (damage) => {
   return result;
 };
 
-/*
-const getDamageStrength = (damage) => {
-  let result = '';
-  if (damage > 10) result = ' сильно';
-  if (damage > 20) result = ' очень сильно';
-  if (damage > 40) result = color.purple(' БОЛЬНО');
-  if (damage > 60) result = color.purple(' ОЧЕНЬ БОЛЬНО');
-  if (damage > 80) result = color.purple(' НЕВЫНОСИМО БОЛЬНО');
-  if (damage > 100) result = color.purple(' ************* КАК БОЛЬНО', true);
-  return result;
-};
-*/
-
 const getPlayerOutputString = (player, mob, damage) => {
   const playerHP = `(${player.curHP > 0 ? player.curHP : 0} HP)`;
   const playerTryHit = `${color.green('Ты')} попытался ударить ${color.red(mob.nameV)}, но ${mob.heWord}`;
@@ -110,20 +97,7 @@ const countDamageAndPrint = (player, mob, agro) => {
   }
 };
 
-const doAfterRound = (player) => {
-  if (player.bashed) console.log(color.yellow('Тебе лучше встать на ноги!', 'light'));
-  if (player.lag > 0) player.lag -= 1;
-};
-
-const round = (player, mob, agro, timerId = false) => {
-  if (!player.inBattle || player.curHP < 1 || mob.curHP < 1) {
-    clearInterval(timerId);
-    return 'runAway or oneShot';
-  }
-
-  doBeforeRound(player, mob);
-  countDamageAndPrint(player, mob, agro);
-
+const checkEndOfBattle = (player, mob, timerId) => {
   if ((player.curHP < 1 || mob.curHP < 1) && timerId) clearInterval(timerId);
   if (player.curHP < 1) {
     player.gameover = 'player lost';
@@ -142,6 +116,25 @@ const round = (player, mob, agro, timerId = false) => {
     } else console.log(color.blue('Ты победил в этом бою! Пора двигаться дальше.'));
     return 'player won';
   }
+  return false;
+};
+
+const doAfterRound = (player) => {
+  if (player.bashed) console.log(color.yellow('Тебе лучше встать на ноги!', 'light'));
+  if (player.lag > 0) player.lag -= 1;
+};
+
+const round = (player, mob, agro, timerId = false) => {
+  if (!player.inBattle || player.curHP < 1 || mob.curHP < 1) {
+    clearInterval(timerId);
+    return 'runAway or oneShot';
+  }
+
+  doBeforeRound(player, mob);
+  countDamageAndPrint(player, mob, agro);
+
+  const endOfBattle = checkEndOfBattle(player, mob, timerId);
+  if (endOfBattle) return endOfBattle;
 
   doAfterRound(player, mob);
   return 'the battle continues';
@@ -149,19 +142,6 @@ const round = (player, mob, agro, timerId = false) => {
 
 const startBattle = (player, mob, agro) => {
   mob.curHP = mob.maxHP;
-
-  // player.curHP = 1000;
-  // mob.curHP = 500;
-  // player.minDamage = 1;
-  // player.maxDamage = 7;
-  // player.dodge = 0;
-  // player.block = 0;
-  // player.bash = 0.8;
-  // mob.dodge = 0.5;
-  // mob.block = 0.5;
-  // mob.lag = 3;
-  // mob.bashed = 1;
-
   round(player, mob, agro);
   const timerId = setInterval(() => round(player, mob, agro, timerId), 2000);
 };

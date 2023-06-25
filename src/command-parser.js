@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
 const simpleCommands = [
-  // ['встать', 'stopRest'],
   ['выйти', 'exit'],
   ['карта', 'map'],
   ['молитва', 'prayer'],
@@ -15,16 +14,7 @@ const complexCommands = [
   ['справка', 'help'],
 ];
 
-const commandParser = (line) => {
-  const fineLine = line.toLowerCase().trim();
-  const [command, arg] = fineLine.split(' ').filter((el) => el !== '');
-  // prettier-ignore
-  const [commandSimple, sendSimple] = simpleCommands
-    .filter(([el]) => el.startsWith(command)).flat();
-  // prettier-ignore
-  const [commandComplex, sendComplex] = complexCommands
-    .filter(([el]) => el.startsWith(command)).flat();
-
+const parserResult = (arg, commandSimple, sendSimple, commandComplex, sendComplex) => {
   if (!arg) {
     if (commandSimple) return [sendSimple];
     if (commandComplex) {
@@ -39,6 +29,19 @@ const commandParser = (line) => {
   }
   if (commandComplex) return [sendComplex, arg];
   return [undefined, 'Чо?'];
+};
+
+const commandParser = (line) => {
+  const fineLine = line.toLowerCase().trim();
+  const [command, arg] = fineLine.split(' ').filter((el) => el !== '');
+  // prettier-ignore
+  const [commandSimple, sendSimple] = simpleCommands
+    .filter(([el]) => el.startsWith(command)).flat();
+  // prettier-ignore
+  const [commandComplex, sendComplex] = complexCommands
+    .filter(([el]) => el.startsWith(command)).flat();
+
+  return parserResult(arg, commandSimple, sendSimple, commandComplex, sendComplex);
 };
 
 export default commandParser;

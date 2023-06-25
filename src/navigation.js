@@ -82,8 +82,7 @@ const showHPAndRoomDirections = (player, room, spaces = 0) => {
         return acc;
     }
   }, '');
-  // console.log(color.green(`${indent}<${player.curHP}HP, выходы: ${rusDirect}>`, 'light'));
-  console.log(`${indent}<${color.green(`${player.curHP} HP`)}, выходы: ${color.yellow(rusDirect)}>`); // может так?
+  console.log(`${indent}<${color.green(`${player.curHP} HP`)}, выходы: ${color.yellow(rusDirect)}>`);
 };
 
 const showDescribSelectedDirection = (direction, nextObj, spaces = 0) => {
@@ -116,20 +115,6 @@ const printLookAround = (LookRoom, map, mobs) => {
     return keyDir;
   });
   return result;
-
-  /*
-  for (const [keyDir, valueNextRoom] of entries) {
-    const nextLookRoom = map[valueNextRoom];
-    if (nextLookRoom.darkRoom) {
-      console.log(`${color.white(getRussianDirection(keyDir))}: темно...`);
-      return;
-    }
-    console.log(`${color.white(getRussianDirection(keyDir))}: & ${color.blue(valueNextRoom)}`);
-    if (nextLookRoom.mobs.length !== 0) {
-      printMobs(nextLookRoom, 2);
-    }
-  }
-  */
 };
 
 const getRandomDirection = (numberOfDirections) => Math.floor(Math.random() * numberOfDirections);
@@ -156,15 +141,12 @@ const navigation = (pressedKey, map, player, mobs) => {
     const nextObj = map[nextRoom];
     nextObj.visited = true;
     console.log(color.black('Ты убежал...', 1));
-    // showDescribSelectedDirection(directionOfEscape, nextObj, 6);
     printMobs(nextObj, mobs);
     showHPAndRoomDirections(player, nextObj);
     if (nextObj.mobs[0]) {
       const nextMobInRoom = nextObj.mobs[0];
       const objectOfNextMob = mobs[nextMobInRoom];
-      // console.log(`test: ${objectOfNextMob.agro}`);
       if (objectOfNextMob.agro === true) {
-        // console.log(nextMobInRoom);
         return nextMobInRoom;
       }
     }
@@ -195,9 +177,7 @@ const navigation = (pressedKey, map, player, mobs) => {
       if (nextObj.mobs[0]) {
         const nextMobInRoom = nextObj.mobs[0];
         const objectOfNextMob = mobs[nextMobInRoom];
-        // onsole.log(`test: ${objectOfNextMob.agro}`);
         if (objectOfNextMob.agro === true) {
-          // console.log(nextMobInRoom);
           return nextMobInRoom;
         }
       }

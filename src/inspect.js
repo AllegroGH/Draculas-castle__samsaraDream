@@ -48,4 +48,4 @@ const inspect = (inspected, map, player, mobs) => {
   console.log('Что осмотреть?...');
 };
 
-export default inspect;
+export { inspect, checkMob };
