@@ -7,6 +7,9 @@ import player from './data/player.js';
 import mobs from './data/mobs.js';
 import items from './data/items.js';
 
+import intro from './misc/intro.js';
+import outro from './misc/outro.js';
+
 import navigation from './navigation.js';
 import showMap from './help/show-map.js';
 import status from './status.js';
@@ -25,15 +28,6 @@ let rawMode;
 let inExit = false;
 let gameover;
 let pressedKey;
-
-const intro = () => {
-  console.log('start game >>> >>> >>>');
-};
-
-const outro = () => {
-  if (player.gameover === 'player lost') console.log('game over - you LOST');
-  if (player.gameover === 'player won') console.log('game over - you WON!!!!!!!!');
-};
 
 const setNavigatinMode = (mode) => {
   process.stdin.setRawMode(mode);
@@ -91,17 +85,17 @@ const commander = (command, arg) => {
   }
 };
 
-const doCommand = (line) => {
-  if (inExit && line === 'да') return 'exit';
-  if (inExit && line === 'нет') {
+const inExitResult = (line) => {
+  if (line === 'да') return 'exit';
+  if (line === 'нет') {
     console.log('Тогда продолжаем!');
     inExit = false;
-    return false;
-  }
-  if (inExit) {
-    console.log('напиши "да" или "нет"');
-    return false;
-  }
+  } else console.log('напиши "да" или "нет"');
+  return false;
+};
+
+const doCommand = (line) => {
+  if (inExit) return inExitResult(line);
   const [command, arg] = commandParser(line);
   if (!command) console.log(arg);
   else commander(command, arg);
@@ -153,7 +147,7 @@ const game = async () => {
   readline.emitKeypressEvents(process.stdin);
   console.log(color.red('Первым делом введи команду "справка":'));
   await playGame();
-  outro();
+  outro(player.gameover);
 };
 
 export default game;
