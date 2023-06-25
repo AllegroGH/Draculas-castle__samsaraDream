@@ -6,7 +6,7 @@ const player = {
   maxDamage: 10,
   dodge: 0,
   block: 0,
-  bash: 0.1,
+  bash: 0.05,
   bashed: false,
   lag: 0,
   items: [],
