@@ -21,6 +21,7 @@
   "dependencies": {
     "bash-color": "^0.0.4",
     "lodash": "^4.17.21",
+    "module_name": "^1.0.0",
     "readline-sync": "^1.4.10"
   }
 }
