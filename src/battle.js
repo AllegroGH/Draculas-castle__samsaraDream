@@ -5,25 +5,44 @@ import getItems from './get-items.js';
 // secondary battle functions
 const getRandomDamage = (min, max) => Math.round(Math.random() * (max - min)) + min;
 
-const getDamage = (who, whom) => {
-  if (!whom.bashed) {
-    if (Math.random() <= whom.dodge) return 'dodged';
-    if (Math.random() <= whom.block) return 'blocked';
-  }
+const getCorrectDamage = (who, whom) => {
   const damage = getRandomDamage(who.minDamage, who.maxDamage);
-  const correctedDamage = Math.round((damage * (whom.bashed ? 1.5 : 1)) / (who.bashed ? 1.5 : 1));
-  whom.curHP -= correctedDamage;
-  return correctedDamage;
+  return Math.round((damage * (whom.bashed ? 1.5 : 1)) / (who.bashed ? 1.5 : 1));
+};
+
+const getDamage = (who, whom) => {
+  if (!whom.bashed && Math.random() <= whom.dodge) return 'dodged';
+  if (!whom.bashed && Math.random() <= whom.block) return 'blocked';
+  const damage = getCorrectDamage(who, whom);
+  whom.curHP -= damage;
+  return damage;
 };
 
 const getDamageStrength = (damage) => {
-  if (damage <= 10) return '';
-  if (damage > 10 && damage <= 20) return ' сильно';
-  if (damage > 20 && damage <= 40) return ' очень сильно';
-  if (damage > 40 && damage <= 60) return color.purple(' БОЛЬНО');
-  if (damage > 60 && damage <= 80) return color.purple(' ОЧЕНЬ БОЛЬНО');
-  if (damage > 80 && damage <= 100) return color.purple(' НЕВЫНОСИМО БОЛЬНО');
-  return color.purple(' ************* КАК БОЛЬНО', true);
+  let result;
+  switch (true) {
+    case damage <= 10:
+      result = '';
+      break;
+    case damage > 10 && damage <= 20:
+      result = ' сильно';
+      break;
+    case damage > 20 && damage <= 40:
+      result = ' очень сильно';
+      break;
+    case damage > 40 && damage <= 60:
+      result = color.purple(' БОЛЬНО');
+      break;
+    case damage > 60 && damage <= 80:
+      result = color.purple(' ОЧЕНЬ БОЛЬНО');
+      break;
+    case damage > 80 && damage <= 100:
+      result = color.purple(' НЕВЫНОСИМО БОЛЬНО');
+      break;
+    default:
+      result = color.purple(' ************* КАК БОЛЬНО', true);
+  }
+  return result;
 };
 
 const getPlayerOutputString = (player, mob, damage) => {
@@ -51,13 +70,18 @@ const getMobOutputString = (player, mob, damage) => {
 };
 
 // primary battle functions
-const doBeforeRound = (mob) => {
+const doBeforeRound = (player, mob) => {
   console.log();
   if (mob.lag === 0 && mob.bashed) {
     mob.bashed = false;
     console.log(color.red(`${mob.name} ${mob.gotupWord}`, true));
   }
   if (mob.lag > -1) mob.lag -= 1;
+  if (mob.isDracula && !mob.bashed && Math.random() <= 0.5) {
+    mob.curHP += 100;
+    player.curHP -= 100;
+    console.log(color.red('Дракула вонзил в тебя свои клыки, истощая твою жизненную силу!', 'light'));
+  }
 };
 
 const countDamageAndPrint = (player, mob, agro) => {
@@ -73,6 +97,28 @@ const countDamageAndPrint = (player, mob, agro) => {
   }
 };
 
+const checkEndOfBattle = (player, mob, timerId) => {
+  if ((player.curHP < 1 || mob.curHP < 1) && timerId) clearInterval(timerId);
+  if (player.curHP < 1) {
+    player.gameover = 'player lost';
+    console.log('нажми любую клавишу...');
+    return 'player lost';
+  }
+  if (mob.curHP < 1) {
+    mob.killed = true;
+    player.inBattle = false;
+    player.bashed = false;
+    player.lag = 0;
+    getItems(player, mob.items);
+    if (mob.isDracula) {
+      console.log('нажми любую клавишу...');
+      player.gameover = 'player won';
+    } else console.log(color.blue('Ты победил в этом бою! Пора двигаться дальше.'));
+    return 'player won';
+  }
+  return false;
+};
+
 const doAfterRound = (player) => {
   if (player.bashed) console.log(color.yellow('Тебе лучше встать на ноги!', 'light'));
   if (player.lag > 0) player.lag -= 1;
@@ -84,44 +130,33 @@ const round = (player, mob, agro, timerId = false) => {
     return 'runAway or oneShot';
   }
 
-  doBeforeRound(mob);
+  doBeforeRound(player, mob);
   countDamageAndPrint(player, mob, agro);
 
-  if ((player.curHP < 1 || mob.curHP < 1) && timerId) clearInterval(timerId);
-  if (player.curHP < 1) {
-    player.gameover = 'player lost';
-    console.log('сдох ты.... press any key');
-    return 'player lost';
-  }
-  if (mob.curHP < 1) {
-    mob.killed = true;
-    player.inBattle = false;
-    getItems(player, mob.items);
-    return 'player won';
-  }
+  const endOfBattle = checkEndOfBattle(player, mob, timerId);
+  if (endOfBattle) return endOfBattle;
 
-  doAfterRound(player);
+  doAfterRound(player, mob);
   return 'the battle continues';
 };
 
 const startBattle = (player, mob, agro) => {
-  // player.curHP = 500;
-  // mob.curHP = 500;
-  // player.maxDamage = 100;
-  // player.dodge = 0;
-  // player.block = 0;
-  // player.bash = 0.8;
-  // mob.dodge = 0.5;
-  // mob.block = 0.5;
-  // mob.lag = 3;
-  // mob.bashed = 1;
-
+  mob.curHP = mob.maxHP;
   round(player, mob, agro);
-  const timerId = setInterval(() => {
-    const roundResult = round(player, mob, agro, timerId);
-    if (roundResult !== 'the battle continues') console.log('battle ended...');
-    if (roundResult === 'player won') console.log('you won this battle...');
-  }, 2000);
+  const timerId = setInterval(() => round(player, mob, agro, timerId), 2000);
+};
+
+const doBash = (player, mob) => {
+  if (Math.random() <= (mob.bashed ? player.bash / 2 : player.bash)) {
+    console.log(color.green(`Своим мощным ударом ты повалил ${mob.nameV} на пол!`, true));
+    mob.bashed = true;
+    mob.lag = 3;
+    player.lag = 2;
+  } else {
+    console.log(color.red(`Ты попытался повалить ${mob.nameV}, но в результате упал сам!`, true));
+    player.bashed = true;
+    player.lag = 3;
+  }
 };
 
 const bash = (player, mobs) => {
@@ -135,20 +170,16 @@ const bash = (player, mobs) => {
     return;
   }
   const mob = mobs[player.inBattle];
-  if (Math.random() <= (mob.bashed ? player.bash / 2 : player.bash)) {
-    console.log(color.green(`Своим мощным ударом ты повалил ${mob.nameV} на пол!`, true));
-    mob.bashed = true;
-    mob.lag = 3;
-    player.lag = 2;
-  } else {
-    console.log(color.red(`Ты попытался повалить ${mob.nameV}, но в результате упал сам!`, true));
-    player.bashed = true;
-    player.lag = 3;
-  }
+
+  doBash(player, mob);
 };
 
 const up = (player) => {
-  if (player.lag || !player.bashed) return;
+  if (player.lag) return;
+  if (!player.bashed) {
+    console.log('Ты и так стоишь как вкопанный!');
+    return;
+  }
   player.bashed = false;
   console.log(color.green('Ты встал на ноги', true));
 };

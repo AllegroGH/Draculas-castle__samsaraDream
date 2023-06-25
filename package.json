@@ -2,7 +2,7 @@
   "name": "draculas-castle",
   "version": "1.0.0",
   "type": "module",
-  "description": "The MUD game in the Dracula's castle location",
+  "description": "The RPG game in the Dracula's castle location",
   "bin": {
     "play-mud": "bin/game.js"
   },
