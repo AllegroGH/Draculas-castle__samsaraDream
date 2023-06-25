@@ -11,13 +11,6 @@ const directions = [
   ['5', 'clear', 'lookAround'],
 ];
 
-/*
-const mobs = {
-  draculas: 'Граф Дракула стоит здесь.',
-  ghost: 'Призрак летает вокруг костра.',
-};
-*/
-
 const printMobs = (room, mobs, spaces = 0) => {
   const indent = spaces ? ' '.repeat(spaces) : '';
   const arrOfMobs = room.mobs;
@@ -41,7 +34,7 @@ const getRussianDirection = (direct) => {
     case 'west':
       return 'на западе';
     case 'up':
-      return 'на верху';
+      return 'наверху';
     case 'down':
       return 'внизу';
     default:
@@ -60,7 +53,7 @@ const getRusForSelectedDir = (direct) => {
     case 'west':
       return 'на запад';
     case 'up':
-      return 'на верх';
+      return 'наверх';
     case 'down':
       return 'вниз';
     default:
@@ -98,6 +91,12 @@ const showDescribSelectedDirection = (direction, nextObj, spaces = 0) => {
   console.log(color.black(`Ты пошел ${getRusForSelectedDir(direction)}`, 1));
   console.log(color.blue(nextObj.name, 'light'));
   console.log(color.white(`${indent}${nextObj.description}`));
+};
+
+const showDescribCurrentRoom = (currentRoom, spaces = 0) => {
+  const indent = spaces ? ' '.repeat(spaces) : '';
+  console.log(color.blue(currentRoom.name, 'light'));
+  console.log(color.white(`${indent}${currentRoom.description}`));
 };
 
 const printLookAround = (LookRoom, map, mobs) => {
@@ -142,6 +141,11 @@ const navigation = (pressedKey, map, player, mobs) => {
   }, undefined);
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
+  if (pressedKey === '/') {
+    showDescribCurrentRoom(lastObj, 6);
+    printMobs(lastObj, mobs);
+    showHPAndRoomDirections(player, lastObj);
+  }
   if (pressedKey === '-' && player.inBattle) {
     player.inBattle = false;
     const directionsOfEscape = Object.keys(lastObj.exits);
@@ -151,7 +155,8 @@ const navigation = (pressedKey, map, player, mobs) => {
     player.room = nextRoom;
     const nextObj = map[nextRoom];
     nextObj.visited = true;
-    showDescribSelectedDirection(directionOfEscape, nextObj, 6);
+    console.log(color.black('Ты убежал...', 1));
+    // showDescribSelectedDirection(directionOfEscape, nextObj, 6);
     printMobs(nextObj, mobs);
     showHPAndRoomDirections(player, nextObj);
     if (nextObj.mobs[0]) {
@@ -175,7 +180,7 @@ const navigation = (pressedKey, map, player, mobs) => {
     return false;
   }
   if (direction && player.inBattle) {
-    console.log(color.white('Ты сражаешься и не можешь сечас никуда идти!'));
+    console.log(color.white('Ты сражаешься и не можешь сейчас никуда идти!'));
     return false;
   }
   if (direction && !player.inBattle) {
@@ -197,7 +202,7 @@ const navigation = (pressedKey, map, player, mobs) => {
         }
       }
     } else {
-      console.log(color.black('Ты не пожешь идти в этом направлении', 1));
+      console.log(color.black('Ты не можешь идти в этом направлении', 1));
     }
   }
   return false;
