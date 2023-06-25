@@ -34,7 +34,7 @@ const getRussianDirection = (direct) => {
     case 'west':
       return 'на западе';
     case 'up':
-      return 'на верху';
+      return 'наверху';
     case 'down':
       return 'внизу';
     default:
@@ -53,7 +53,7 @@ const getRusForSelectedDir = (direct) => {
     case 'west':
       return 'на запад';
     case 'up':
-      return 'на верх';
+      return 'наверх';
     case 'down':
       return 'вниз';
     default:
@@ -142,7 +142,7 @@ const navigation = (pressedKey, map, player, mobs) => {
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
   if (pressedKey === '/') {
-    showDescribCurrentRoom(lastObj);
+    showDescribCurrentRoom(lastObj, 6);
     printMobs(lastObj, mobs);
     showHPAndRoomDirections(player, lastObj);
   }
@@ -180,7 +180,7 @@ const navigation = (pressedKey, map, player, mobs) => {
     return false;
   }
   if (direction && player.inBattle) {
-    console.log(color.white('Ты сражаешься и не можешь сечас никуда идти!'));
+    console.log(color.white('Ты сражаешься и не можешь сейчас никуда идти!'));
     return false;
   }
   if (direction && !player.inBattle) {
@@ -202,7 +202,7 @@ const navigation = (pressedKey, map, player, mobs) => {
         }
       }
     } else {
-      console.log(color.black('Ты не пожешь идти в этом направлении', 1));
+      console.log(color.black('Ты не можешь идти в этом направлении', 1));
     }
   }
   return false;
