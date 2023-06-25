@@ -2,7 +2,7 @@
 [![build](https://github.com/AllegroGH/Draculas-castle__samsaraDream/actions/workflows/build.yml/badge.svg)](https://github.com/AllegroGH/Draculas-castle__samsaraDream/actions/workflows/build.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f878654fe4d73f44bb8e/maintainability)](https://codeclimate.com/github/AllegroGH/Draculas-castle__samsaraDream/maintainability)
 
-### Установка
+### Установка зависимостей
 ```bash
 make install
 ```
@@ -33,4 +33,11 @@ make play
 Для персонажа доступны два режима взаимодействия с игрой: режим навигации и управления, а также режим ввода команд. В режиме навигации и управления персонаж выполняет действия перемещения по карте и управления в бою. В режиме ввода команд персонаж может детально осмотреть какой-то предмет или существо, вывести справку или, например, выйти из игры.
 
 В начале игры вызови команду "справка" для получения детальной информации.
+
+## Примеры
+Проиграть просто:
+
+
+Но победить тоже не сложно:)
+
 
