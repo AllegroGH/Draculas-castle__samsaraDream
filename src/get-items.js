@@ -2,27 +2,26 @@
 import color from 'bash-color';
 import gameItems from './data/items.js';
 
+const addParams = (player, gameItem) => {
+  player.curHP += gameItem.maxHP || 0;
+  player.maxHP += gameItem.maxHP || 0;
+  player.minDamage += gameItem.minDamage || 0;
+  player.maxDamage += gameItem.maxDamage || 0;
+  player.dodge += gameItem.dodge || 0;
+  player.block += gameItem.block || 0;
+  player.bash += gameItem.bash || 0;
+};
+
 const getItems = (player, items) => {
   if (!items.length) return;
-  const result = items.map((item) => {
+  items.map((item) => {
     const gameItem = gameItems[item];
     console.log();
-    console.log(color.green(gameItem.ifTake, 'light'));
-    if (gameItem.maxHP) {
-      player.curHP += gameItem.maxHP;
-      player.maxHP += gameItem.maxHP;
-    }
-    if (gameItem.minDamage) player.minDamage += gameItem.minDamage;
-    if (gameItem.maxDamage) player.maxDamage += gameItem.maxDamage;
-    if (gameItem.dodge) player.dodge = Math.round((player.dodge + gameItem.dodge) * 100) / 100;
-    if (gameItem.block) player.block = Math.round((player.block + gameItem.block) * 100) / 100;
-    if (gameItem.bash) player.bash = Math.round((player.bash + gameItem.bash) * 100) / 100;
-
+    console.log(color.cyan(gameItem.ifTake, 'light'));
+    addParams(player, gameItem);
     player.items.push(item);
     return item;
   });
-  console.log(result);
-  console.log(player);
 };
 
 export default getItems;
