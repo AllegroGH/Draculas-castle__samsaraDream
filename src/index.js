@@ -13,7 +13,7 @@ import status from './status.js';
 import help from './help/common-help.js';
 import commandParser from './command-parser.js';
 import { startBattle, bash, up } from './battle.js';
-import inspect from './inspect.js';
+import { inspect, checkMob } from './inspect.js';
 import prayer from './prayer.js';
 
 const rl = readline.createInterface({
@@ -42,21 +42,8 @@ const setNavigatinMode = (mode) => {
   else console.log(color.black('# режим ввода команд', true));
 };
 
-const checkMobToAttack = (arg) => {
-  if (!map[player.room].mobs.length) return false;
-  const curMobs = map[player.room].mobs;
-  const [target] = curMobs.filter(
-    // prettier-ignore
-    (curMob) => mobs[curMob].name
-      .toLowerCase()
-      .split(' ')
-      .filter((el) => el.startsWith(arg)).length,
-  );
-  return target;
-};
-
 const attack = (arg) => {
-  const target = checkMobToAttack(arg);
+  const target = checkMob(arg, map, player, mobs);
   if (!target) {
     console.log('Здесь таких нет. На кого ты хочешь напасть?');
     return;

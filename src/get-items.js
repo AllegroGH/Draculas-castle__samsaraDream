@@ -2,18 +2,14 @@
 import color from 'bash-color';
 import gameItems from './data/items.js';
 
-const accurateSum = (arg1, arg2) => Math.floor(arg1 * 100 + arg2 * 100) / 100;
-
 const addParams = (player, gameItem) => {
-  if (gameItem.maxHP) {
-    player.curHP += gameItem.maxHP;
-    player.maxHP += gameItem.maxHP;
-  }
-  if (gameItem.minDamage) player.minDamage += gameItem.minDamage;
-  if (gameItem.maxDamage) player.maxDamage += gameItem.maxDamage;
-  if (gameItem.dodge) player.dodge = accurateSum(player.dodge, gameItem.dodge);
-  if (gameItem.block) player.block = accurateSum(player.block, gameItem.block);
-  if (gameItem.bash) player.bash = accurateSum(player.bash, gameItem.bash);
+  player.curHP += gameItem.maxHP || 0;
+  player.maxHP += gameItem.maxHP || 0;
+  player.minDamage += gameItem.minDamage || 0;
+  player.maxDamage += gameItem.maxDamage || 0;
+  player.dodge += gameItem.dodge || 0;
+  player.block += gameItem.block || 0;
+  player.bash += gameItem.bash || 0;
 };
 
 const getItems = (player, items) => {

@@ -97,20 +97,7 @@ const countDamageAndPrint = (player, mob, agro) => {
   }
 };
 
-const doAfterRound = (player) => {
-  if (player.bashed) console.log(color.yellow('Тебе лучше встать на ноги!', 'light'));
-  if (player.lag > 0) player.lag -= 1;
-};
-
-const round = (player, mob, agro, timerId = false) => {
-  if (!player.inBattle || player.curHP < 1 || mob.curHP < 1) {
-    clearInterval(timerId);
-    return 'runAway or oneShot';
-  }
-
-  doBeforeRound(player, mob);
-  countDamageAndPrint(player, mob, agro);
-
+const checkEndOfBattle = (player, mob, timerId) => {
   if ((player.curHP < 1 || mob.curHP < 1) && timerId) clearInterval(timerId);
   if (player.curHP < 1) {
     player.gameover = 'player lost';
@@ -129,6 +116,25 @@ const round = (player, mob, agro, timerId = false) => {
     } else console.log(color.blue('Ты победил в этом бою! Пора двигаться дальше.'));
     return 'player won';
   }
+  return false;
+};
+
+const doAfterRound = (player) => {
+  if (player.bashed) console.log(color.yellow('Тебе лучше встать на ноги!', 'light'));
+  if (player.lag > 0) player.lag -= 1;
+};
+
+const round = (player, mob, agro, timerId = false) => {
+  if (!player.inBattle || player.curHP < 1 || mob.curHP < 1) {
+    clearInterval(timerId);
+    return 'runAway or oneShot';
+  }
+
+  doBeforeRound(player, mob);
+  countDamageAndPrint(player, mob, agro);
+
+  const endOfBattle = checkEndOfBattle(player, mob, timerId);
+  if (endOfBattle) return endOfBattle;
 
   doAfterRound(player, mob);
   return 'the battle continues';
