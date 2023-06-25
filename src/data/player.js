@@ -1,5 +1,4 @@
 const player = {
-  // name: 'Вася',
   curHP: 150,
   maxHP: 150,
   minDamage: 5,

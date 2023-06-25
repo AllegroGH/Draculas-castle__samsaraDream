@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
 const simpleCommands = [
-  // ['встать', 'stopRest'],
   ['выйти', 'exit'],
   ['карта', 'map'],
   ['молитва', 'prayer'],

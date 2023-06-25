@@ -101,7 +101,6 @@ const commander = (command, arg) => {
       exit();
       break;
     default:
-    // return arg ? false : 0;
   }
 };
 
@@ -126,7 +125,6 @@ const keypressHandler = (key) => {
   if (key.ctrl && key.name === 'c') process.exit();
   if (rawMode) {
     pressedKey = key.name || key.sequence;
-    /* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
     if (pressedKey === '0' || pressedKey === 'insert') bash(player, mobs);
     if (pressedKey === '+') up(player);
     if (pressedKey !== 'return' && !player.lag && !player.bashed) {
@@ -141,9 +139,6 @@ const keypressHandler = (key) => {
 };
 
 const playGame = async () => {
-  // process.stdin.setRawMode(true);
-  // rawMode = true;
-
   const promise = new Promise((resolve) => {
     process.stdin.on('keypress', (str, key) => {
       if (player.gameover === 'player won' || player.gameover === 'player lost') {
