@@ -11,13 +11,6 @@ const directions = [
   ['5', 'clear', 'lookAround'],
 ];
 
-/*
-const mobs = {
-  draculas: 'Граф Дракула стоит здесь.',
-  ghost: 'Призрак летает вокруг костра.',
-};
-*/
-
 const printMobs = (room, mobs, spaces = 0) => {
   const indent = spaces ? ' '.repeat(spaces) : '';
   const arrOfMobs = room.mobs;
@@ -100,6 +93,12 @@ const showDescribSelectedDirection = (direction, nextObj, spaces = 0) => {
   console.log(color.white(`${indent}${nextObj.description}`));
 };
 
+const showDescribCurrentRoom = (currentRoom, spaces = 0) => {
+  const indent = spaces ? ' '.repeat(spaces) : '';
+  console.log(color.blue(currentRoom.name, 'light'));
+  console.log(color.white(`${indent}${currentRoom.description}`));
+};
+
 const printLookAround = (LookRoom, map, mobs) => {
   console.log(color.black('Ты огляделся', 1));
   const entries = Object.entries(LookRoom.exits);
@@ -142,6 +141,11 @@ const navigation = (pressedKey, map, player, mobs) => {
   }, undefined);
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
+  if (pressedKey === '/') {
+    showDescribCurrentRoom(lastObj);
+    printMobs(lastObj, mobs);
+    showHPAndRoomDirections(player, lastObj);
+  }
   if (pressedKey === '-' && player.inBattle) {
     player.inBattle = false;
     const directionsOfEscape = Object.keys(lastObj.exits);
@@ -151,7 +155,8 @@ const navigation = (pressedKey, map, player, mobs) => {
     player.room = nextRoom;
     const nextObj = map[nextRoom];
     nextObj.visited = true;
-    showDescribSelectedDirection(directionOfEscape, nextObj, 6);
+    console.log(color.black('Ты убежал...', 1));
+    // showDescribSelectedDirection(directionOfEscape, nextObj, 6);
     printMobs(nextObj, mobs);
     showHPAndRoomDirections(player, nextObj);
     if (nextObj.mobs[0]) {
