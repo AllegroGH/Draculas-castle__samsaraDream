@@ -97,8 +97,7 @@ const inExitResult = (line) => {
 const doCommand = (line) => {
   if (inExit) return inExitResult(line);
   const [command, arg] = commandParser(line);
-  if (!command) console.log(arg);
-  else commander(command, arg);
+  if (command) commander(command, arg);
   return false;
 };
 
@@ -143,9 +142,8 @@ const playGame = async () => {
 };
 
 const game = async () => {
-  intro();
   readline.emitKeypressEvents(process.stdin);
-  console.log(color.red('Первым делом введи команду "справка":'));
+  intro();
   await playGame();
   outro(player.gameover);
 };

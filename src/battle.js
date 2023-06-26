@@ -97,25 +97,31 @@ const countDamageAndPrint = (player, mob, agro) => {
   }
 };
 
+const doPlayerLost = (player) => {
+  player.gameover = 'player lost';
+  console.log();
+  console.log('Ты проиграл... (нажми любую клавишу)');
+  return 'player lost';
+};
+
+const doMobLost = (mob, player) => {
+  mob.killed = true;
+  player.inBattle = false;
+  player.bashed = false;
+  player.lag = 0;
+  getItems(player, mob.items);
+  if (mob.isDracula) {
+    console.log();
+    console.log('Ты победил! (нажми любую клавишу)');
+    player.gameover = 'player won';
+  } else console.log(color.blue('Ты победил в этом бою! Пора двигаться дальше.'));
+  return 'player won';
+};
+
 const checkEndOfBattle = (player, mob, timerId) => {
   if ((player.curHP < 1 || mob.curHP < 1) && timerId) clearInterval(timerId);
-  if (player.curHP < 1) {
-    player.gameover = 'player lost';
-    console.log('нажми любую клавишу...');
-    return 'player lost';
-  }
-  if (mob.curHP < 1) {
-    mob.killed = true;
-    player.inBattle = false;
-    player.bashed = false;
-    player.lag = 0;
-    getItems(player, mob.items);
-    if (mob.isDracula) {
-      console.log('нажми любую клавишу...');
-      player.gameover = 'player won';
-    } else console.log(color.blue('Ты победил в этом бою! Пора двигаться дальше.'));
-    return 'player won';
-  }
+  if (player.curHP < 1) return doPlayerLost(player);
+  if (mob.curHP < 1) return doMobLost(mob, player);
   return false;
 };
 
