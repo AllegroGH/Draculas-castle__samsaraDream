@@ -97,8 +97,9 @@ const inExitResult = (line) => {
 const doCommand = (line) => {
   if (inExit) return inExitResult(line);
   const [command, arg] = commandParser(line);
-  if (!command) console.log(arg);
-  else commander(command, arg);
+  // if (!command) console.log(arg);
+  // else commander(command, arg);
+  if (command) commander(command, arg);
   return false;
 };
 
