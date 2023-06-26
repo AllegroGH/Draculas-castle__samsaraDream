@@ -143,9 +143,8 @@ const playGame = async () => {
 };
 
 const game = async () => {
-  intro();
   readline.emitKeypressEvents(process.stdin);
-  console.log(color.red('Первым делом введи команду "справка":'));
+  intro();
   await playGame();
   outro(player.gameover);
 };
