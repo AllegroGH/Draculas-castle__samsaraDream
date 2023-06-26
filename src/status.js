@@ -2,6 +2,8 @@
 import _ from 'lodash';
 import color from 'bash-color';
 
+const maxEquipItems = 11;
+
 // prettier-ignore
 const getPlayerParams = (player) => [
   `${color.green('  Очки здоровья:   ', 'light')} ${player.curHP}/${player.maxHP}`,
@@ -26,6 +28,7 @@ const status = (player, items) => {
   console.log(color.green(getPlayerParams(player)));
   console.log(color.black('(экипировка)', 'light'));
   const equip = getPlayerEquip(player, items);
+  if (player.items.length === maxEquipItems) console.log(color.purple('  Full-House! ;)', 'light'));
   console.log(equip || color.cyan('  Гол как сокол!', 'light'));
   console.log();
 };
