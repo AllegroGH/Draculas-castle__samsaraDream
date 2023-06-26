@@ -27,8 +27,8 @@ const status = (player, items) => {
   console.log(color.black('(характеристики)', 'light'));
   console.log(color.green(getPlayerParams(player)));
   console.log(color.black('(экипировка)', 'light'));
-  const equip = getPlayerEquip(player, items);
   if (player.items.length === maxEquipItems) console.log(color.purple('  Full-House! ;)', 'light'));
+  const equip = getPlayerEquip(player, items);
   console.log(equip || color.cyan('  Гол как сокол!', 'light'));
   console.log();
 };
