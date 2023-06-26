@@ -36,8 +36,7 @@ make play
 
 ## Примеры
 Проиграть просто:
-
+[![asciicast](https://asciinema.org/a/LaAciG3l1rm2tkdX0o2rZ5omP.svg)](https://asciinema.org/a/LaAciG3l1rm2tkdX0o2rZ5omP)
 
 Но победить тоже не сложно:)
-
-
+[![asciicast](https://asciinema.org/a/alKbO8RPotbiaHIFxfQVLT9HB.svg)](https://asciinema.org/a/alKbO8RPotbiaHIFxfQVLT9HB)
