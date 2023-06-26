@@ -1,10 +1,10 @@
 const showMap = (map, player) => {
-  var cur_room = `${player.room}`;
-  var cur_floor = `${map[player.room].floor}`;
-  // var cur_floor = 1;
+  const curRoom = `${player.room}`;
+  const curFloor = Number(`${map[player.room].floor}`);
+  // var curFloor = 1;
   //  console.log(`showMap resolve ('visited' key in this room): ${map[player.room].visited}`);
-  //Our map is a matrix 10x7. Every room has number and name.
-  var floor_1 = {
+  // Our map is a matrix 10x7. Every room has number and name.
+  const floor1 = {
     5: 'room5',
     10: 'room10',
     11: 'room11',
@@ -28,7 +28,7 @@ const showMap = (map, player) => {
     34: 'room34',
     40: 'room40',
   };
-  var floor_2 = {
+  const floor2 = {
     47: 'room47',
     52: 'room52',
     53: 'room53',
@@ -49,127 +49,144 @@ const showMap = (map, player) => {
     70: 'room70',
     74: 'room74',
   };
-  var floor_3 = { 87: 'room87', 88: 'room88', 89: 'room89', 94: 'room94', 95: 'room95', 96: 'room96', 101: 'room101', 102: 'room102', 103: 'room103', 109: 'room109' };
+  const floor3 = {
+    87: 'room87', 88: 'room88', 89: 'room89', 94: 'room94', 95: 'room95', 96: 'room96', 101: 'room101', 102: 'room102', 103: 'room103', 109: 'room109',
+  };
 
-  function get_up(i, j) {
-    if (j == 1) {
-      var visited = map[floor_1[i]].visited;
-      var obj = map[floor_1[i]].exits;
+  function getUp(i, j) {
+    let left = '';
+    let right = '';
+    let center = '';
+    let visited;
+    let obj = [];
+    if (j === 1) {
+      visited = map[floor1[i]].visited;
+      obj = map[floor1[i]].exits;
     }
-    if (j == 2) {
-      var visited = map[floor_2[i]].visited;
-      var obj = map[floor_2[i]].exits;
+    if (j === 2) {
+      visited = map[floor2[i]].visited;
+      obj = map[floor2[i]].exits;
     }
-    if (j == 3) {
-      var visited = map[floor_3[i]].visited;
-      var obj = map[floor_3[i]].exits;
+    if (j === 3) {
+      visited = map[floor3[i]].visited;
+      obj = map[floor3[i]].exits;
     }
-    var left = '';
-    var right = '';
-    var center = '';
     center = '   ';
-    'west' in obj ? (left = '─') : (left = '┌');
-    'east' in obj ? (right = '─') : (right = '┐');
+    left = 'west' in obj ? '─' : '┌';
+    right = 'east' in obj ? '─' : '┐';
     if ('north' in obj) {
-      'east' in obj ? (right = ' ') : (right = '│');
-      'west' in obj ? (left = ' ') : (left = '│');
+      right = 'east' in obj ? ' ' : '│';
+      left = 'west' in obj ? ' ' : '│';
     } else center = '───';
-    var head = left + center + right;
-    visited ? (head = head) : (head = '*****');
+    let head = left + center + right;
+    if (!visited) { head = '░░░░░'; }
     return head;
   }
 
-  function get_dw(i, j) {
-    if (j == 1) {
-      var visited = map[floor_1[i]].visited;
-      var obj = map[floor_1[i]].exits;
+  function getDw(i, j) {
+    let left = '';
+    let right = '';
+    let center = '';
+    let visited;
+    let obj = [];
+    if (j === 1) {
+      visited = map[floor1[i]].visited;
+      obj = map[floor1[i]].exits;
     }
-    if (j == 2) {
-      var visited = map[floor_2[i]].visited;
-      var obj = map[floor_2[i]].exits;
+    if (j === 2) {
+      visited = map[floor2[i]].visited;
+      obj = map[floor2[i]].exits;
     }
-    if (j == 3) {
-      var visited = map[floor_3[i]].visited;
-      var obj = map[floor_3[i]].exits;
+    if (j === 3) {
+      visited = map[floor3[i]].visited;
+      obj = map[floor3[i]].exits;
     }
-    var left = '';
-    var right = '';
-    var center = '';
     center = '   ';
-    'west' in obj ? (left = '─') : (left = '└');
-    'east' in obj ? (right = '─') : (right = '┘');
+    left = 'west' in obj ? '─' : '└';
+    right = 'east' in obj ? '─' : '┘';
     if ('south' in obj) {
-      'east' in obj ? (right = ' ') : (right = '│');
-      'west' in obj ? (left = ' ') : (left = '│');
+      right = 'east' in obj ? ' ' : '│';
+      left = 'west' in obj ? ' ' : '│';
     } else center = '───';
-    var tail = left + center + right;
-    visited ? (tail = tail) : (tail = '*****');
+    let tail = left + center + right;
+    if (!visited) { tail = '░░░░░'; }
     return tail;
   }
 
-  function get_mid(i, j) {
-    if (j == 1) {
-      var visited = map[floor_1[i]].visited;
-      var obj = map[floor_1[i]].exits;
-      var key = floor_1[i];
+  function getMid(i, j) {
+    let room = '';
+    let west = '';
+    let east = '';
+    let visited;
+    let obj = [];
+    let key;
+    if (j === 1) {
+      visited = map[floor1[i]].visited;
+      obj = map[floor1[i]].exits;
+      key = floor1[i];
     }
-    if (j == 2) {
-      var visited = map[floor_2[i]].visited;
-      var obj = map[floor_2[i]].exits;
-      var key = floor_2[i];
+    if (j === 2) {
+      visited = map[floor2[i]].visited;
+      obj = map[floor2[i]].exits;
+      key = floor2[i];
     }
-    if (j == 3) {
-      var visited = map[floor_3[i]].visited;
-      var obj = map[floor_3[i]].exits;
-      var key = floor_3[i];
+    if (j === 3) {
+      visited = map[floor3[i]].visited;
+      obj = map[floor3[i]].exits;
+      key = floor3[i];
     }
-    var room = '';
-    var west = '';
-    var east = '';
-    'west' in obj ? (west = ' ') : (west = '│');
-    'east' in obj ? (east = ' ') : (east = '│');
-    cur_room == key ? (room = west + ' * ' + east) : (room = west + '   ' + east);
-    visited ? (west = west) : (room = '*****');
-    //    console.log(cur_room);
+    west = 'west' in obj ? ' ' : '│';
+    east = 'east' in obj ? ' ' : '│';
+    room = curRoom === key ? `${west} * ${east}` : `${west}   ${east}`;
+    if (!visited) { room = '░░░░░'; }
+    //    console.log(curRoom);
     //    console.log(key);
     return room;
   }
 
-  console.log('Этаж ' + cur_floor);
-  var empty = '*****';
-  var k = 0;
-  var up = '';
-  var mid = '';
-  var dw = '';
-  if (cur_floor == 1) {
-    var start = 1;
-    var finish = 43;
+  console.log(`Этаж ${curFloor}`);
+  const empty = '░░░░░';
+  let k = 0;
+  let up = '';
+  let mid = '';
+  let dw = '';
+  let start;
+  let finish;
+  let token1 = '';
+  let token2 = '';
+  let token3 = '';
+  if (curFloor === 1) {
+    start = 1;
+    finish = 43;
   }
-  if (cur_floor == 2) {
-    var start = 43;
-    var finish = 80;
+  if (curFloor === 2) {
+    start = 43;
+    finish = 80;
   }
-  if (cur_floor == 3) {
-    var start = 78;
-    var finish = 113;
+  if (curFloor === 3) {
+    start = 78;
+    finish = 113;
   }
-  for (let i = start; i < finish; i++) {
-    if (cur_floor == 1) {
-      i in floor_1 ? (up += get_up(i, cur_floor)) : (up += empty);
-      i in floor_1 ? (mid += get_mid(i, cur_floor)) : (mid += empty);
-      i in floor_1 ? (dw += get_dw(i, cur_floor)) : (dw += empty);
+  for (let i = start; i < finish; i += 1) {
+    if (curFloor === 1) {
+      token1 = i in floor1 ? getUp(i, curFloor) : empty;
+      token2 = i in floor1 ? getMid(i, curFloor) : empty;
+      token3 = i in floor1 ? getDw(i, curFloor) : empty;
     }
-    if (cur_floor == 2) {
-      i in floor_2 ? (up += get_up(i, cur_floor)) : (up += empty);
-      i in floor_2 ? (mid += get_mid(i, cur_floor)) : (mid += empty);
-      i in floor_2 ? (dw += get_dw(i, cur_floor)) : (dw += empty);
+    if (curFloor === 2) {
+      token1 = i in floor2 ? getUp(i, curFloor) : empty;
+      token2 = i in floor2 ? getMid(i, curFloor) : empty;
+      token3 = i in floor2 ? getDw(i, curFloor) : empty;
     }
-    if (cur_floor == 3) {
-      i in floor_3 ? (up += get_up(i, cur_floor)) : (up += empty);
-      i in floor_3 ? (mid += get_mid(i, cur_floor)) : (mid += empty);
-      i in floor_3 ? (dw += get_dw(i, cur_floor)) : (dw += empty);
+    if (curFloor === 3) {
+      token1 = i in floor3 ? getUp(i, curFloor) : empty;
+      token2 = i in floor3 ? getMid(i, curFloor) : empty;
+      token3 = i in floor3 ? getDw(i, curFloor) : empty;
     }
-    k++;
+    up += token1;
+    mid += token2;
+    dw += token3;
+    k += 1;
     if (k > 6) {
       k = 0;
       console.log(up);
