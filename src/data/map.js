@@ -172,8 +172,6 @@ const map = {
     },
     mobs: [],
     items: [],
-    visited: true,
-    hiddenItems: ['helm'],
     hiddenItems: [
       ['сундук'],
       'helm',
@@ -193,8 +191,6 @@ const map = {
     },
     mobs: [],
     items: [],
-    visited: true,
-    hiddenItems: ['sword'],
     hiddenItems: [
       ['сундук'],
       'sword',
@@ -340,8 +336,6 @@ const map = {
     },
     mobs: [],
     items: [],
-    visited: true,
-    hiddenItems: ['shield'],
     hiddenItems: [
       ['стеллаж'],
       'shield',
@@ -365,6 +359,7 @@ const map = {
     visited: true,
     floor: 1,
   },
+
   room47: {
     name: 'Лестница',
     description: descJson.short_47,
@@ -437,8 +432,6 @@ const map = {
     },
     mobs: [],
     items: [],
-    visited: true,
-    hiddenItems: ['armor'],
     hiddenItems: [
       ['стойка', 'стойку'],
       'armor',
@@ -539,7 +532,6 @@ const map = {
     },
     mobs: [],
     items: [],
-    visited: true,
     hiddenItems: [
       ['стол'],
       'ring',
@@ -551,13 +543,6 @@ const map = {
   },
   room64: {
     name: 'Кладовая',
-    hiddenItems: ['ring'],
-    darkRoom: false,
-    visited: false,
-    floor: 2,
-  },
-  room64: {
-    name: 'Библиотека',
     description: descJson.short_64,
     longDescription: descJson.long_64,
     exits: {
@@ -573,11 +558,6 @@ const map = {
   },
   room65: {
     name: 'Кладовая',
-    visited: false,
-    floor: 2,
-  },
-  room65: {
-    name: 'Библиотека',
     description: descJson.short_65,
     longDescription: descJson.long_65,
     exits: {
