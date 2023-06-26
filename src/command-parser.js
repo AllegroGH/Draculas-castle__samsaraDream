@@ -15,20 +15,12 @@ const complexCommands = [
 ];
 
 const parserResult = (arg, commandSimple, sendSimple, commandComplex, sendComplex) => {
-  if (!arg) {
-    if (commandSimple) return [sendSimple];
-    if (commandComplex) {
-      switch (commandComplex) {
-        case 'напасть':
-          return [undefined, `${_.capitalize(commandComplex)} на кого?`];
-        default:
-          return [undefined, `${_.capitalize(commandComplex)} что?`];
-      }
-    }
-    return [undefined, 'Чо?'];
-  }
-  if (commandComplex) return [sendComplex, arg];
-  return [undefined, 'Чо?'];
+  if (commandComplex && arg) return [sendComplex, arg];
+  if (commandSimple && !arg) return [sendSimple];
+  if (commandComplex === 'напасть') console.log(`${_.capitalize(commandComplex)} на кого?`);
+  else if (commandComplex === 'осмотреть') console.log(`${_.capitalize(commandComplex)} что?`);
+  else console.log('Чего?');
+  return [undefined];
 };
 
 const commandParser = (line) => {
