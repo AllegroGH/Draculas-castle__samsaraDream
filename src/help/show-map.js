@@ -174,14 +174,14 @@ const showMap = (map, player) => {
       token3 = i in floor1 ? getDw(i, curFloor) : empty;
     }
     if (curFloor === 2) {
-      token1 = i in floor1 ? getUp(i, curFloor) : empty;
-      token2 = i in floor1 ? getMid(i, curFloor) : empty;
-      token3 = i in floor1 ? getDw(i, curFloor) : empty;
+      token1 = i in floor2 ? getUp(i, curFloor) : empty;
+      token2 = i in floor2 ? getMid(i, curFloor) : empty;
+      token3 = i in floor2 ? getDw(i, curFloor) : empty;
     }
     if (curFloor === 3) {
-      token1 = i in floor1 ? getUp(i, curFloor) : empty;
-      token2 = i in floor1 ? getMid(i, curFloor) : empty;
-      token3 = i in floor1 ? getDw(i, curFloor) : empty;
+      token1 = i in floor3 ? getUp(i, curFloor) : empty;
+      token2 = i in floor3 ? getMid(i, curFloor) : empty;
+      token3 = i in floor3 ? getDw(i, curFloor) : empty;
     }
     up += token1;
     mid += token2;
