@@ -173,7 +173,7 @@ const map = {
     mobs: [],
     items: [],
     visited: true,
-    hiddenItems: ["helm"],
+    hiddenItems: ['helm'],
     hiddenItems: [
       ['сундук'],
       'helm',
@@ -194,7 +194,7 @@ const map = {
     mobs: [],
     items: [],
     visited: true,
-    hiddenItems: ["sword"],
+    hiddenItems: ['sword'],
     hiddenItems: [
       ['сундук'],
       'sword',
@@ -341,7 +341,7 @@ const map = {
     mobs: [],
     items: [],
     visited: true,
-    hiddenItems: ["shield"],
+    hiddenItems: ['shield'],
     hiddenItems: [
       ['стеллаж'],
       'shield',
@@ -438,7 +438,7 @@ const map = {
     mobs: [],
     items: [],
     visited: true,
-    hiddenItems: ["armor"],
+    hiddenItems: ['armor'],
     hiddenItems: [
       ['стойка', 'стойку'],
       'armor',
@@ -551,7 +551,7 @@ const map = {
   },
   room64: {
     name: 'Кладовая',
-    hiddenItems: ["ring"],
+    hiddenItems: ['ring'],
     darkRoom: false,
     visited: false,
     floor: 2,
