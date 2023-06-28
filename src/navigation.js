@@ -34,7 +34,7 @@ const getRussianDirection = (direct) => {
     case 'west':
       return 'на западе';
     case 'up':
-      return 'наверху';
+      return 'на верху';
     case 'down':
       return 'внизу';
     default:
@@ -53,7 +53,7 @@ const getRusForSelectedDir = (direct) => {
     case 'west':
       return 'на запад';
     case 'up':
-      return 'наверх';
+      return 'на верх';
     case 'down':
       return 'вниз';
     default:
@@ -82,7 +82,8 @@ const showHPAndRoomDirections = (player, room, spaces = 0) => {
         return acc;
     }
   }, '');
-  console.log(`${indent}<${color.green(`${player.curHP} HP`)}, выходы: ${color.yellow(rusDirect)}>`);
+  // console.log(color.green(`${indent}<${player.curHP}HP, выходы: ${rusDirect}>`, 'light'));
+  console.log(`${indent}<${color.green(`${player.curHP} HP`)}, выходы: ${color.yellow(rusDirect)}>`); // может так?
 };
 
 const showDescribSelectedDirection = (direction, nextObj, spaces = 0) => {
@@ -115,6 +116,29 @@ const printLookAround = (LookRoom, map, mobs) => {
     return keyDir;
   });
   return result;
+
+  /*
+  for (const [keyDir, valueNextRoom] of entries) {
+    const nextLookRoom = map[valueNextRoom];
+    if (nextLookRoom.darkRoom) {
+      console.log(`${color.white(getRussianDirection(keyDir))}: темно...`);
+      return;
+    }
+    console.log(`${color.white(getRussianDirection(keyDir))}: & ${color.blue(valueNextRoom)}`);
+    if (nextLookRoom.mobs.length !== 0) {
+      printMobs(nextLookRoom, 2);
+    }
+  }
+  */
+};
+
+const getAggressiveMob = (room, mobs) => {
+  const nextMobInRoom = room.mobs[0];
+  const objectOfNextMob = mobs[nextMobInRoom];
+  if (objectOfNextMob.agro === true) {
+    return nextMobInRoom;
+  }
+  return false;
 };
 
 const getRandomDirection = (numberOfDirections) => Math.floor(Math.random() * numberOfDirections);
@@ -127,7 +151,7 @@ const navigation = (pressedKey, map, player, mobs) => {
   const lastRoom = player.room;
   const lastObj = map[lastRoom];
   if (pressedKey === '/') {
-    showDescribCurrentRoom(lastObj, 6);
+    showDescribCurrentRoom(lastObj);
     printMobs(lastObj, mobs);
     showHPAndRoomDirections(player, lastObj);
   }
@@ -144,11 +168,7 @@ const navigation = (pressedKey, map, player, mobs) => {
     printMobs(nextObj, mobs);
     showHPAndRoomDirections(player, nextObj);
     if (nextObj.mobs[0]) {
-      const nextMobInRoom = nextObj.mobs[0];
-      const objectOfNextMob = mobs[nextMobInRoom];
-      if (objectOfNextMob.agro === true) {
-        return nextMobInRoom;
-      }
+      return getAggressiveMob(nextObj, mobs);
     }
     return false;
   }
@@ -162,7 +182,7 @@ const navigation = (pressedKey, map, player, mobs) => {
     return false;
   }
   if (direction && player.inBattle) {
-    console.log(color.white('Ты сражаешься и не можешь сейчас никуда идти!'));
+    console.log(color.white('Ты сражаешься и не можешь сечас никуда идти!'));
     return false;
   }
   if (direction && !player.inBattle) {
@@ -175,14 +195,10 @@ const navigation = (pressedKey, map, player, mobs) => {
       printMobs(nextObj, mobs);
       showHPAndRoomDirections(player, nextObj);
       if (nextObj.mobs[0]) {
-        const nextMobInRoom = nextObj.mobs[0];
-        const objectOfNextMob = mobs[nextMobInRoom];
-        if (objectOfNextMob.agro === true) {
-          return nextMobInRoom;
-        }
+        return getAggressiveMob(nextObj, mobs);
       }
     } else {
-      console.log(color.black('Ты не можешь идти в этом направлении', 1));
+      console.log(color.black('Ты не пожешь идти в этом направлении', 1));
     }
   }
   return false;
