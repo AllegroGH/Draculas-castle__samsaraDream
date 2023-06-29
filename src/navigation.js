@@ -119,6 +119,15 @@ const printLookAround = (LookRoom, map, mobs) => {
 
 const getRandomDirection = (numberOfDirections) => Math.floor(Math.random() * numberOfDirections);
 
+const getAggressiveMob = (room, mobs) => {
+  const nextMobInRoom = room.mobs[0];
+  const objectOfNextMob = mobs[nextMobInRoom];
+  if (objectOfNextMob.agro === true) {
+    return nextMobInRoom;
+  }
+  return false;
+};
+
 const navigation = (pressedKey, map, player, mobs) => {
   const direction = directions.reduce((acc, [key1, key2, dir]) => {
     if (key1 === pressedKey || key2 === pressedKey) return dir;
@@ -144,11 +153,7 @@ const navigation = (pressedKey, map, player, mobs) => {
     printMobs(nextObj, mobs);
     showHPAndRoomDirections(player, nextObj);
     if (nextObj.mobs[0]) {
-      const nextMobInRoom = nextObj.mobs[0];
-      const objectOfNextMob = mobs[nextMobInRoom];
-      if (objectOfNextMob.agro === true) {
-        return nextMobInRoom;
-      }
+      return getAggressiveMob(nextObj, mobs);
     }
     return false;
   }
@@ -175,11 +180,7 @@ const navigation = (pressedKey, map, player, mobs) => {
       printMobs(nextObj, mobs);
       showHPAndRoomDirections(player, nextObj);
       if (nextObj.mobs[0]) {
-        const nextMobInRoom = nextObj.mobs[0];
-        const objectOfNextMob = mobs[nextMobInRoom];
-        if (objectOfNextMob.agro === true) {
-          return nextMobInRoom;
-        }
+        return getAggressiveMob(nextObj, mobs);
       }
     } else {
       console.log(color.black('Ты не можешь идти в этом направлении', 1));
